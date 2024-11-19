@@ -12,13 +12,18 @@ void AKIK_joint::_bind_methods() {
                  "get_prev_path");
 }
 
+void AKIK_joint::_ready() {
+    this->next = (this->next_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(next_path);
+    this->prev = (this->prev_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(prev_path);
+}
+
 NodePath AKIK_joint::get_next_path() {
     return next_path;
 }
 
 void AKIK_joint::set_next_path(NodePath next) {
     this->next_path = next;
-    this->next = (this->next_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(next);
+    // this->next = (this->next_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(next);
 }
 
 NodePath AKIK_joint::get_prev_path() {
@@ -27,5 +32,5 @@ NodePath AKIK_joint::get_prev_path() {
 
 void AKIK_joint::set_prev_path(NodePath prev) {
     this->prev_path = prev;
-    this->prev = (this->prev_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(prev);
+    // this->prev = (this->prev_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(prev);
 }

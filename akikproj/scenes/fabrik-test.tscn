@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://crkr7jkeg84lv"]
+[gd_scene load_steps=4 format=3 uid="uid://crkr7jkeg84lv"]
 
 [ext_resource type="PackedScene" uid="uid://d008nvr3ql2df" path="res://scenes/AKIK_joint.tscn" id="1_38a17"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_02yln"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073dw"]
+albedo_color = Color(0.999993, 0.175739, 0.11135, 1)
 
 [node name="Fabrik-test" type="Node3D"]
 
 [node name="AKIK_chain" type="AKIK_chain" parent="."]
 start_path = NodePath("AKIK_joint")
-end_path = NodePath("AKIK_joint3")
+end_path = NodePath("AKIK_joint5")
 expected_end_path = NodePath("Expected")
 
 [node name="AKIK_joint" parent="AKIK_chain" instance=ExtResource("1_38a17")]
@@ -15,8 +20,25 @@ next_path = NodePath("../AKIK_joint2")
 [node name="AKIK_joint2" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406581, 2.0687)
 
 [node name="AKIK_joint3" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+next_path = NodePath("../AKIK_joint4")
 prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753743, 3.83507)
+
+[node name="AKIK_joint4" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+next_path = NodePath("../AKIK_joint5")
+prev_path = NodePath("../AKIK_joint3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.6358)
+
+[node name="AKIK_joint5" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+prev_path = NodePath("../AKIK_joint4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63523, 7.56266)
 
 [node name="Expected" type="Node3D" parent="AKIK_chain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80546, 9.18624)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_chain/Expected"]
+mesh = SubResource("SphereMesh_02yln")
+surface_material_override/0 = SubResource("StandardMaterial3D_073dw")

@@ -15,8 +15,12 @@ class AKIK_joint : public Node3D {
 	static void _bind_methods();
 
     public:
+        void _ready() override;
+        
         AKIK_joint* next;
         AKIK_joint* prev;
+
+
 
         NodePath get_next_path();
         void set_next_path(NodePath next);

@@ -10,14 +10,17 @@ class AKIK_chain : public Node3D {
     GDCLASS(AKIK_chain, Node3D)
 
     private:
-        AKIK_joint* start;
+        Vector3 start_anchor;
+        AKIK_joint* start;  //Should store anchor position separate
         NodePath start_path;
         AKIK_joint* end;
         NodePath end_path;
-        AKIK_joint* curr = nullptr;
 
         NodePath expected_end_path;
         Node3D* expected_end_node;
+
+        void forward_kinematic();
+        void backward_kinematic();
 
     protected:
         static void _bind_methods();
