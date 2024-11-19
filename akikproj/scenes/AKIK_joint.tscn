@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d008nvr3ql2df"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5aj5c"]
+
+[node name="AKIK_joint" type="AKIK_joint"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_5aj5c")

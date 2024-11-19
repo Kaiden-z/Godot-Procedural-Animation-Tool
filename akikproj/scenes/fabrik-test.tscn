@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://crkr7jkeg84lv"]
+
+[ext_resource type="PackedScene" uid="uid://d008nvr3ql2df" path="res://scenes/AKIK_joint.tscn" id="1_38a17"]
+
+[node name="Fabrik-test" type="Node3D"]
+
+[node name="AKIK_chain" type="AKIK_chain" parent="."]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+expected_end_path = NodePath("Expected")
+
+[node name="AKIK_joint" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="AKIK_joint2" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+
+[node name="AKIK_joint3" parent="AKIK_chain" instance=ExtResource("1_38a17")]
+prev_path = NodePath("../AKIK_joint2")
+
+[node name="Expected" type="Node3D" parent="AKIK_chain"]
