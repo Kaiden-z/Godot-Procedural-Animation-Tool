@@ -123,7 +123,7 @@ void DampedTransformRig::set_segments(TypedArray<PackedScene> p_segment_arr)
 {	
 	// Iterate through the input array and replace null PackedScenes with the default segment
     for (int i = 0; i < p_segment_arr.size(); ++i) {
-        if (Object::cast_to<PackedScene>(p_segment_arr[i]) == nullptr) {
+        if (p_segment_arr[i].get_type() == Variant::NIL) {
             p_segment_arr[i] = *default_segment; // Replace with default segment if null
         }
     }
