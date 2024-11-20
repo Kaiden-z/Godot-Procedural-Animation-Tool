@@ -36,7 +36,7 @@ void AKIK_chain::_process(double p_delta) {
     float total_distance = 0.0f;
     AKIK_joint* curr = start;
     while (curr->next != nullptr) {
-        total_distance += curr->get_position().distance_to(curr->next->get_position());
+        total_distance += curr->get_next_length();
         curr = curr->next;
     }
     // UtilityFunctions::print(total_distance);
@@ -45,7 +45,7 @@ void AKIK_chain::_process(double p_delta) {
         curr = start->next;
         Vector3 oldPos = start->get_position();
         while (curr != nullptr) {
-            float distance = oldPos.distance_to(curr->get_position());
+            float distance = curr->get_prev_length();
             Vector3 newCurrPos = (expected_end_node->get_position() - oldPos).normalized() * distance + oldPos;
             oldPos = curr->get_position();
             curr->set_position(newCurrPos);
@@ -63,7 +63,7 @@ void AKIK_chain::_process(double p_delta) {
 }
 
 void AKIK_chain::forward_kinematic() {
-    float dist = end->get_position().distance_to(end->prev->get_position());
+    float dist = end->get_prev_length();
     end->set_position(expected_end_node->get_position());
     AKIK_joint* curr = end->prev;
 
@@ -71,7 +71,7 @@ void AKIK_chain::forward_kinematic() {
         Vector3 newPos = (curr->get_position() - curr->next->get_position()).normalized() * dist + curr->next->get_position();
 
         if (curr->prev != nullptr) {
-            dist = curr->get_position().distance_to(curr->prev->get_position());
+            dist = curr->get_prev_length();
         }
         curr->set_position(newPos);
         curr = curr->prev;
@@ -79,7 +79,7 @@ void AKIK_chain::forward_kinematic() {
 }
 
 void AKIK_chain::backward_kinematic() {
-    float dist = start->get_position().distance_to(start->next->get_position());
+    float dist = start->get_next_length();
     start->set_position(start_anchor);
     AKIK_joint* curr = start->next;
 
@@ -87,7 +87,7 @@ void AKIK_chain::backward_kinematic() {
         Vector3 newPos = (curr->get_position() - curr->prev->get_position()).normalized() * dist + curr->prev->get_position();
 
         if (curr->next != nullptr) {
-            dist = curr->get_position().distance_to(curr->next->get_position());
+            dist = curr->get_next_length();
         }
         curr->set_position(newPos);
         curr = curr->next;
