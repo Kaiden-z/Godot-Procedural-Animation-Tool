@@ -1,6 +1,7 @@
 #include "fabrik/AKIK_chain.h"
 
-#include "godot_cpp/variant/utility_functions.hpp"
+#include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/input.hpp>
 
 void AKIK_chain::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_start_path"), &AKIK_chain::get_start_path);
@@ -17,6 +18,10 @@ void AKIK_chain::_bind_methods() {
     ClassDB::bind_method(D_METHOD("set_expected_end_path", "p_expected_end_path"), &AKIK_chain::set_expected_end_path);
     ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "expected_end_path"), "set_expected_end_path",
                  "get_expected_end_path");
+
+    ClassDB::bind_method(D_METHOD("get_is_following"), &AKIK_chain::get_is_following);
+    ClassDB::bind_method(D_METHOD("set_is_following", "p_follow"), &AKIK_chain::set_is_following);
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_following"), "set_is_following", "get_is_following");
 }
 
 void AKIK_chain::_ready() {
@@ -33,13 +38,20 @@ void AKIK_chain::_process(double p_delta) {
         return;
     }
     
+    Input* input = Input::get_singleton();
+
+    if (is_following || input->is_action_pressed("fabrik")) { //TODO: this doesn't work cause input map isn't loaded in editor
+        fabrik_step();
+    }
+}
+
+void AKIK_chain::fabrik_step() {
     float total_distance = 0.0f;
     AKIK_joint* curr = start;
     while (curr->next != nullptr) {
         total_distance += curr->get_next_length();
         curr = curr->next;
     }
-    // UtilityFunctions::print(total_distance);
 
     if (total_distance <= start->get_position().distance_to(expected_end_node->get_position())) {  // outside of range
         curr = start->next;
@@ -51,14 +63,12 @@ void AKIK_chain::_process(double p_delta) {
             curr->set_position(newCurrPos);
             curr = curr->next;
         }
-        // UtilityFunctions::print("outside range");
     } else { // within range
         float tolerance = 0.01;
         if (end->get_position().distance_to(expected_end_node->get_position()) > tolerance) {
             forward_kinematic();
             backward_kinematic();
         }
-        // UtilityFunctions::print("inside range");
     }
 }
 
@@ -119,3 +129,9 @@ void AKIK_chain::set_expected_end_path(NodePath end_path) {
     // this->expected_end_node = (this->end_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(end_path);
 }
 
+bool AKIK_chain::get_is_following() {
+    return is_following;
+}
+void AKIK_chain::set_is_following(bool follow) {
+    is_following = follow;
+}

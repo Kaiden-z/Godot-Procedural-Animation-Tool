@@ -13,6 +13,7 @@ albedo_color = Color(0.999993, 0.175739, 0.11135, 1)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint5")
 expected_end_path = NodePath("Expected")
+is_following = true
 
 [node name="AKIK_joint" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 next_path = NodePath("../AKIK_joint2")
@@ -20,24 +21,24 @@ next_path = NodePath("../AKIK_joint2")
 [node name="AKIK_joint2" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406581, 2.0687)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499781, 2.04818)
 
 [node name="AKIK_joint3" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 next_path = NodePath("../AKIK_joint4")
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.753743, 3.83507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926521, 3.79703)
 
 [node name="AKIK_joint4" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 next_path = NodePath("../AKIK_joint5")
 prev_path = NodePath("../AKIK_joint3")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.6358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38928, 5.6935)
 
 [node name="AKIK_joint5" parent="AKIK_chain" instance=ExtResource("1_38a17")]
 prev_path = NodePath("../AKIK_joint4")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63523, 7.56266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98838, 8.14868)
 
 [node name="Expected" type="Node3D" parent="AKIK_chain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80546, 9.18624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.44932, 10.0377)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_chain/Expected"]
 mesh = SubResource("SphereMesh_02yln")

@@ -19,6 +19,9 @@ class AKIK_chain : public Node3D {
         NodePath expected_end_path;
         Node3D* expected_end_node;
 
+        bool is_following = false;
+
+        void fabrik_step();
         void forward_kinematic();
         void backward_kinematic();
 
@@ -33,6 +36,8 @@ class AKIK_chain : public Node3D {
         void set_start_path(NodePath start);
         NodePath get_end_path();
         void set_end_path(NodePath end);
+        bool get_is_following();
+        void set_is_following(bool follow);
 
         NodePath get_expected_end_path();
         void set_expected_end_path(NodePath end_path);
