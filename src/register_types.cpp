@@ -4,6 +4,7 @@
 
 #include "fabrik/AKIK_chain.h"
 #include "fabrik/AKIK_joint.h"
+#include "dampedtransform/dampedtransformrig.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -19,6 +20,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(GDExample);
 	GDREGISTER_CLASS(AKIK_chain);
 	GDREGISTER_CLASS(AKIK_joint);
+	GDREGISTER_CLASS(DampedTransformRig);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {
