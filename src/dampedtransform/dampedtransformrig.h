@@ -11,8 +11,8 @@ private:
 	float segment_spacing;
 	Ref<PackedScene> default_segment;
 	TypedArray<PackedScene> segments;
-	Node3D* rig_head;
-	Node3D* rig_tail;
+	Vector<Node3D*> chain;
+	Vector3 prev_pos;
 
 protected:
 	static void _bind_methods();

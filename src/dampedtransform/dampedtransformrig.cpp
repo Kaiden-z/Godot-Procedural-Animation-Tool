@@ -25,18 +25,16 @@ DampedTransformRig::DampedTransformRig()
 	segment_spacing = 1.0f;
 	default_segment = Ref<PackedScene>();
 	segments = TypedArray<Node3D>();
-	rig_head = nullptr;
-	rig_tail = nullptr;
+	chain = Vector<Node3D*>();
+	prev_pos = get_global_position();
 }
 
 DampedTransformRig::~DampedTransformRig()
 {
-	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Deconstructing rig...");  
-	if (rig_head != nullptr) {
-		rig_head->queue_free();
-		rig_head = nullptr;
-		rig_tail = nullptr;
-	} 
+	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Deconstructing rig...");
+	for (Node3D* node : chain) {
+		node->queue_free();
+	}
 }
 
 void DampedTransformRig::_ready()
@@ -47,7 +45,16 @@ void DampedTransformRig::_ready()
 
 void DampedTransformRig::_process(double delta) 
 {
-	
+    for (int i = 0; i < chain.size() - 1; ++i) {
+		Node3D* node = chain[i];
+		Node3D* next_node = chain[i+1];
+
+		Vector3 diff = next_node->get_global_position() - node->get_global_position();
+		Vector3 constrained_offset = diff.normalized() * segment_spacing;
+		next_node->set_global_position(node->get_global_position() + constrained_offset);
+
+		node->look_at(next_node->get_global_position(), Vector3(0, 1, 0));			
+	}
 }
 
 Node3D* DampedTransformRig::initialize_segment(int index)
@@ -73,25 +80,28 @@ void DampedTransformRig::refresh_rig()
 {
 	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Refreshing rig...");
 
-	if (rig_head != nullptr) {
-		rig_head->queue_free();
-		rig_head = nullptr;
-		rig_tail = nullptr;
+	for (Node3D* node : chain) {
+		node->queue_free();
+	}
+
+	chain.clear();
+
+	for (int i = 0; i < segments.size(); ++i) { 
+		Node3D* node = initialize_segment(i);
+		chain.push_back(node); 
+		add_child(node);
+		if (i > 0) node->set_as_top_level(true);
+		node->set_global_position(get_global_position() + Vector3(0, 0, segment_spacing * i * -1));
 	}
 
 	if (!segments.is_empty()) {
-		rig_head = initialize_segment(0); 
-		add_child(rig_head);
-
-		rig_tail = rig_head;
-
-		for (int i = 1; i < segments.size(); ++i) { 
-			Node3D* segment = initialize_segment(i);
-			rig_tail->add_child(segment);
-			segment->set_position(Vector3(0, 0, segment_spacing * -1));
-			rig_tail = segment;
-		}
+		Node3D* end_node = memnew(Node3D);
+		chain.push_back(end_node);
+		add_child(end_node);
+		end_node->set_as_top_level(true);
+		end_node->set_global_position(get_global_position() + Vector3(0, 0, segment_spacing * segments.size() * -1));
 	}
+
 }
 
 
