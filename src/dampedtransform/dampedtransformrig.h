@@ -9,10 +9,12 @@ class DampedTransformRig : public Node3D {
 
 private:
 	float segment_spacing;
+	float angle_constraint;
 	Ref<PackedScene> default_segment;
 	TypedArray<PackedScene> segments;
+
+
 	Vector<Node3D*> chain;
-	Vector3 prev_pos;
 
 protected:
 	static void _bind_methods();
@@ -29,6 +31,8 @@ public:
 
 	void set_segment_spacing(float p_segment_spacing);
 	float get_segment_spacing() const;
+	void set_angle_constraint(float p_angle_constraint);
+	float get_angle_constraint() const;
 	void set_default_segment(Ref<PackedScene> p_default_segment);
 	Ref<PackedScene> get_default_segment() const;
 	void set_segments(TypedArray<PackedScene> p_segment);
