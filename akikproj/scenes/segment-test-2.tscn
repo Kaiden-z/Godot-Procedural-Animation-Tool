@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4foon0q6lx4w"]
+[gd_scene load_steps=3 format=3 uid="uid://b4foon0q6lx4w"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_upxe4"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_wmtsv"]
+
+[node name="Node3D" type="RigidBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_upxe4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wmtsv")

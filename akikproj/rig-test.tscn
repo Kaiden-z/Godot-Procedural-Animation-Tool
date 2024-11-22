@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjqv0b7ong7lx"]
+
+[ext_resource type="PackedScene" uid="uid://ivb2fwj4qwl6" path="res://scenes/segment-test-1.tscn" id="1_xifxw"]
+[ext_resource type="Script" path="res://scripts/PlayerSnakeExample.cs" id="2_xgdhv"]
+[ext_resource type="PackedScene" uid="uid://boph2cg2pivcy" path="res://scenes/segment-test-head.tscn" id="3_0acyw"]
+[ext_resource type="PackedScene" uid="uid://b4foon0q6lx4w" path="res://scenes/segment-test-2.tscn" id="4_jexq4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qinv1"]
+sky_top_color = Color(0.325886, 0.459976, 0.607993, 1)
+sky_horizon_color = Color(0.674916, 0.684013, 0.69838, 1)
+sky_curve = 0.102453
+ground_bottom_color = Color(0.332572, 0.44635, 0.570591, 1)
+ground_horizon_color = Color(0.620336, 0.682534, 0.716008, 1)
+ground_curve = 0.0414106
+
+[sub_resource type="Sky" id="Sky_w7rop"]
+sky_material = SubResource("ProceduralSkyMaterial_qinv1")
+
+[sub_resource type="Environment" id="Environment_lpiyl"]
+background_mode = 2
+sky = SubResource("Sky_w7rop")
+ambient_light_color = Color(0.501407, 0.501406, 0.501406, 1)
+ambient_light_sky_contribution = 0.75
+tonemap_mode = 3
+tonemap_white = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_bcng7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lpiyl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.639774, 0.768563, 0, -0.768563, 0.639774, 0, 4.77569, 9.91624)
+light_energy = 2.0
+shadow_enabled = true
+shadow_blur = 1.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_bcng7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999877, -0.00577993, 0.0145629, 0, 0.929469, 0.368901, -0.015668, -0.368856, 0.929354, 0.173175, 4.708, 10.443)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_xgdhv")
+MoveSpeed = 20.0
+
+[node name="DampedTransformRig" type="DampedTransformRig" parent="CharacterBody3D"]
+segment_spacing = 1.5
+angle_constraint_(degrees) = 60.0
+default_segment = ExtResource("1_xifxw")
+segments = Array[PackedScene]([ExtResource("3_0acyw"), ExtResource("1_xifxw"), ExtResource("4_jexq4"), ExtResource("1_xifxw"), ExtResource("4_jexq4"), ExtResource("1_xifxw"), ExtResource("1_xifxw"), ExtResource("1_xifxw")])

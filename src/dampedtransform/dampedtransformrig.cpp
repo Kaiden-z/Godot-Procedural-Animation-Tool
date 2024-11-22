@@ -1,6 +1,7 @@
 #include "dampedtransform/dampedtransformrig.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/engine.hpp>
 
 using namespace godot;
 
@@ -29,7 +30,7 @@ DampedTransformRig::DampedTransformRig()
 	segment_spacing = 1.0f;
 	angle_constraint = 90.f;
 	default_segment = Ref<PackedScene>();
-	segments = TypedArray<Node3D>();
+	segments = TypedArray<PackedScene>();
 	chain = Vector<Node3D*>();
 	
 }
@@ -45,6 +46,7 @@ DampedTransformRig::~DampedTransformRig()
 void DampedTransformRig::_ready()
 {
 	UtilityFunctions::print("Calling ready...");
+	refresh_rig();
 }
 
 
@@ -129,7 +131,7 @@ void DampedTransformRig::refresh_rig()
 void DampedTransformRig::set_segment_spacing(float p_segment_spacing)
 {
 	segment_spacing = godot::Math::clamp<float>(p_segment_spacing, 0.f, std::numeric_limits<float>::max());
-	refresh_rig(); 
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
 float DampedTransformRig::get_segment_spacing() const
@@ -140,7 +142,7 @@ float DampedTransformRig::get_segment_spacing() const
 void DampedTransformRig::set_angle_constraint(float p_angle_constraint)
 {
 	angle_constraint = godot::Math::clamp<float>(p_angle_constraint, 0.f, 360.f);
-	refresh_rig();
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig();
 }
 
 float DampedTransformRig::get_angle_constraint() const
@@ -151,7 +153,7 @@ float DampedTransformRig::get_angle_constraint() const
 void DampedTransformRig::set_default_segment(Ref<PackedScene> p_default_segment)
 {
 	default_segment = p_default_segment;
-	refresh_rig(); 
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
 Ref<PackedScene> DampedTransformRig::get_default_segment() const
@@ -164,14 +166,14 @@ void DampedTransformRig::set_segments(TypedArray<PackedScene> p_segment_arr)
 	// Iterate through the input array and replace null PackedScenes with the default segment
     for (int i = 0; i < p_segment_arr.size(); ++i) {
         if (p_segment_arr[i].get_type() == Variant::NIL) {
-            p_segment_arr[i] = *default_segment; // Replace with default segment if null
+            p_segment_arr[i] = *default_segment;
         }
     }
 
     // Assign the updated array to the segments member
     segments = p_segment_arr; 
 
-	refresh_rig(); 
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
 TypedArray<PackedScene> DampedTransformRig::get_segments() const
