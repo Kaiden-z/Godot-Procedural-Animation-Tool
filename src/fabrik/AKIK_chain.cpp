@@ -29,7 +29,6 @@ void AKIK_chain::_ready() {
     this->start = (this->start_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(this->start_path);
     this->end = (this->end_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(this->end_path);
     this->expected_end_node = (this->expected_end_path == NodePath("")) ? nullptr : this->get_node<Node3D>(this->expected_end_path);
-    start_anchor = start->get_position();
 }
 
 void AKIK_chain::_process(double p_delta) {
@@ -53,19 +52,20 @@ void AKIK_chain::fabrik_step() {
         curr = curr->next;
     }
 
-    if (total_distance <= start->get_position().distance_to(expected_end_node->get_position())) {  // outside of range
+    if (total_distance <= start->get_global_position().distance_to(expected_end_node->get_global_position())) {  // outside of range
         curr = start->next;
-        Vector3 oldPos = start->get_position();
+        Vector3 oldPos = start->get_global_position();
         while (curr != nullptr) {
             float distance = curr->get_prev_length();
-            Vector3 newCurrPos = (expected_end_node->get_position() - oldPos).normalized() * distance + oldPos;
-            oldPos = curr->get_position();
-            curr->set_position(newCurrPos);
+            Vector3 newCurrPos = (expected_end_node->get_global_position() - oldPos).normalized() * distance + oldPos;
+            oldPos = curr->get_global_position();
+            curr->set_global_position(newCurrPos);
             curr = curr->next;
         }
     } else { // within range
         float tolerance = 0.01;
-        if (end->get_position().distance_to(expected_end_node->get_position()) > tolerance) {
+        if (end->get_global_position().distance_to(expected_end_node->get_global_position()) > tolerance) {
+            start_anchor = start->get_global_position();
             forward_kinematic();
             backward_kinematic();
         }
@@ -74,32 +74,32 @@ void AKIK_chain::fabrik_step() {
 
 void AKIK_chain::forward_kinematic() {
     float dist = end->get_prev_length();
-    end->set_position(expected_end_node->get_position());
+    end->set_global_position(expected_end_node->get_global_position());
     AKIK_joint* curr = end->prev;
 
     while (curr != nullptr) {
-        Vector3 newPos = (curr->get_position() - curr->next->get_position()).normalized() * dist + curr->next->get_position();
+        Vector3 newPos = (curr->get_global_position() - curr->next->get_global_position()).normalized() * dist + curr->next->get_global_position();
 
         if (curr->prev != nullptr) {
             dist = curr->get_prev_length();
         }
-        curr->set_position(newPos);
+        curr->set_global_position(newPos);
         curr = curr->prev;
     }
 }
 
 void AKIK_chain::backward_kinematic() {
     float dist = start->get_next_length();
-    start->set_position(start_anchor);
+    start->set_global_position(start_anchor);
     AKIK_joint* curr = start->next;
 
     while (curr != nullptr) {
-        Vector3 newPos = (curr->get_position() - curr->prev->get_position()).normalized() * dist + curr->prev->get_position();
+        Vector3 newPos = (curr->get_global_position() - curr->prev->get_global_position()).normalized() * dist + curr->prev->get_global_position();
 
         if (curr->next != nullptr) {
             dist = curr->get_next_length();
         }
-        curr->set_position(newPos);
+        curr->set_global_position(newPos);
         curr = curr->next;
     }
 }
