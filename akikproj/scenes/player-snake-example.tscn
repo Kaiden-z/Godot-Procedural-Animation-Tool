@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck20nked23vkp"]
+
+[ext_resource type="Script" path="res://scripts/PlayerSnakeExample.cs" id="1_qpv0c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vv2gr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5stfv"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_qpv0c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vv2gr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5stfv")

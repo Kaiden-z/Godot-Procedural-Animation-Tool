@@ -17,6 +17,7 @@ env.Append(CPPPATH=["src/"])
 sources = Glob("src/*.cpp")
 sources.extend(Glob("src/fabrik/*.cpp"))
 sources.extend(Glob("src/environment-targeting/*.cpp"))
+sources.extend(Glob("src/dampedtransform/*.cpp"))
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgkbbiggeqqed"]
+
+[ext_resource type="PackedScene" uid="uid://ivb2fwj4qwl6" path="res://scenes/segment-test-1.tscn" id="1_yud6l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ciiv5"]
+sky_top_color = Color(0.325886, 0.459976, 0.607993, 1)
+sky_horizon_color = Color(0.674916, 0.684013, 0.69838, 1)
+sky_curve = 0.102453
+ground_bottom_color = Color(0.332572, 0.44635, 0.570591, 1)
+ground_horizon_color = Color(0.620336, 0.682534, 0.716008, 1)
+ground_curve = 0.0414106
+
+[sub_resource type="Sky" id="Sky_dowfv"]
+sky_material = SubResource("ProceduralSkyMaterial_ciiv5")
+
+[sub_resource type="Environment" id="Environment_ynwf4"]
+background_mode = 2
+sky = SubResource("Sky_dowfv")
+ambient_light_color = Color(0.501407, 0.501406, 0.501406, 1)
+ambient_light_sky_contribution = 0.75
+tonemap_mode = 3
+tonemap_white = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w3cf4"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t455g"]
+albedo_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_eht6l"]
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ynwf4")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.639774, 0.768563, 0, -0.768563, 0.639774, 0, 4.77569, 9.91624)
+light_energy = 2.0
+shadow_enabled = true
+shadow_blur = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.930565, 0.366128, 0, -0.366128, 0.930565, 0, 5.85, 11.0542)
+current = true
+fov = 90.0
+size = 3.34
+
+[node name="Node3D" parent="." instance=ExtResource("1_yud6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.77324, 1.85307, 0.223267)

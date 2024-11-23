@@ -4,6 +4,7 @@
 
 #include "fabrik/AKIK_chain.h"
 #include "fabrik/AKIK_joint.h"
+#include "dampedtransform/dampedtransformrig.h"
 
 #include "environment-targeting/ground-targeter.h"
 
@@ -22,6 +23,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(AKIK_chain);
 	GDREGISTER_CLASS(AKIK_joint);
 	GDREGISTER_CLASS(AKIK_ground_targeter);
+	GDREGISTER_CLASS(DampedTransformRig);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {
