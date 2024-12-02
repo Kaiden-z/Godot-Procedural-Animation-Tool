@@ -1,30 +1,30 @@
-#include "dampedtransform/dampedtransformrig.h"
+#include "dampedtransform/AKIK_Procedural_Rig.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/classes/engine.hpp>
 
 using namespace godot;
 
-void DampedTransformRig::_bind_methods() 
+void AKIK_Procedural_Rig::_bind_methods() 
 {
-	ClassDB::bind_method(D_METHOD("get_segment_spacing"), &DampedTransformRig::get_segment_spacing);
-    ClassDB::bind_method(D_METHOD("set_segment_spacing", "p_segment_spacing"), &DampedTransformRig::set_segment_spacing);
+	ClassDB::bind_method(D_METHOD("get_segment_spacing"), &AKIK_Procedural_Rig::get_segment_spacing);
+    ClassDB::bind_method(D_METHOD("set_segment_spacing", "p_segment_spacing"), &AKIK_Procedural_Rig::set_segment_spacing);
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "segment_spacing"), "set_segment_spacing", "get_segment_spacing");
 
-	ClassDB::bind_method(D_METHOD("get_angle_constraint"), &DampedTransformRig::get_angle_constraint);
-    ClassDB::bind_method(D_METHOD("set_angle_constraint", "p_angle_constraint"), &DampedTransformRig::set_angle_constraint);
+	ClassDB::bind_method(D_METHOD("get_angle_constraint"), &AKIK_Procedural_Rig::get_angle_constraint);
+    ClassDB::bind_method(D_METHOD("set_angle_constraint", "p_angle_constraint"), &AKIK_Procedural_Rig::set_angle_constraint);
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "angle_constraint_(degrees)"), "set_angle_constraint", "get_angle_constraint");
 
-    ClassDB::bind_method(D_METHOD("get_default_segment"), &DampedTransformRig::get_default_segment);
-    ClassDB::bind_method(D_METHOD("set_default_segment", "p_default_segment"), &DampedTransformRig::set_default_segment);
+    ClassDB::bind_method(D_METHOD("get_default_segment"), &AKIK_Procedural_Rig::get_default_segment);
+    ClassDB::bind_method(D_METHOD("set_default_segment", "p_default_segment"), &AKIK_Procedural_Rig::set_default_segment);
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "default_segment"), "set_default_segment", "get_default_segment");
 
-	ClassDB::bind_method(D_METHOD("get_segments"), &DampedTransformRig::get_segments);
-    ClassDB::bind_method(D_METHOD("set_segments", "p_segment_arr"), &DampedTransformRig::set_segments);
+	ClassDB::bind_method(D_METHOD("get_segments"), &AKIK_Procedural_Rig::get_segments);
+    ClassDB::bind_method(D_METHOD("set_segments", "p_segment_arr"), &AKIK_Procedural_Rig::set_segments);
     ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "segments"), "set_segments", "get_segments");
 }
 
-DampedTransformRig::DampedTransformRig() 
+AKIK_Procedural_Rig::AKIK_Procedural_Rig() 
 {
 	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Constructing rig..."); 
 	segment_spacing = 1.0f;
@@ -35,7 +35,7 @@ DampedTransformRig::DampedTransformRig()
 	
 }
 
-DampedTransformRig::~DampedTransformRig()
+AKIK_Procedural_Rig::~AKIK_Procedural_Rig()
 {
 	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Deconstructing rig...");
 	for (Node3D* node : chain) {
@@ -43,14 +43,14 @@ DampedTransformRig::~DampedTransformRig()
 	}
 }
 
-void DampedTransformRig::_ready()
+void AKIK_Procedural_Rig::_ready()
 {
 	UtilityFunctions::print("Calling ready...");
 	refresh_rig();
 }
 
 
-void DampedTransformRig::_process(double delta) 
+void AKIK_Procedural_Rig::_process(double delta) 
 {
 
 	float max_angle = Math::deg_to_rad(angle_constraint);
@@ -77,7 +77,7 @@ void DampedTransformRig::_process(double delta)
 	}
 }
 
-Node3D* DampedTransformRig::initialize_segment(int index)
+Node3D* AKIK_Procedural_Rig::initialize_segment(int index)
 {
 	PackedScene* segment_scene = Object::cast_to<PackedScene>(segments[index]);
 
@@ -96,7 +96,7 @@ Node3D* DampedTransformRig::initialize_segment(int index)
 	return segment;
 }
 
-void DampedTransformRig::refresh_rig() 
+void AKIK_Procedural_Rig::refresh_rig() 
 {
 	UtilityFunctions::print("[0x", String::num_int64(reinterpret_cast<uintptr_t>(this), 16), "] Refreshing rig...");
 
@@ -128,40 +128,40 @@ void DampedTransformRig::refresh_rig()
 
 
 
-void DampedTransformRig::set_segment_spacing(float p_segment_spacing)
+void AKIK_Procedural_Rig::set_segment_spacing(float p_segment_spacing)
 {
 	segment_spacing = godot::Math::clamp<float>(p_segment_spacing, 0.f, std::numeric_limits<float>::max());
 	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
-float DampedTransformRig::get_segment_spacing() const
+float AKIK_Procedural_Rig::get_segment_spacing() const
 {
     return segment_spacing;
 }
 
-void DampedTransformRig::set_angle_constraint(float p_angle_constraint)
+void AKIK_Procedural_Rig::set_angle_constraint(float p_angle_constraint)
 {
 	angle_constraint = godot::Math::clamp<float>(p_angle_constraint, 0.f, 360.f);
 	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig();
 }
 
-float DampedTransformRig::get_angle_constraint() const
+float AKIK_Procedural_Rig::get_angle_constraint() const
 {
     return angle_constraint;
 }
 
-void DampedTransformRig::set_default_segment(Ref<PackedScene> p_default_segment)
+void AKIK_Procedural_Rig::set_default_segment(Ref<PackedScene> p_default_segment)
 {
 	default_segment = p_default_segment;
 	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
-Ref<PackedScene> DampedTransformRig::get_default_segment() const
+Ref<PackedScene> AKIK_Procedural_Rig::get_default_segment() const
 {
     return default_segment; 
 }
 
-void DampedTransformRig::set_segments(TypedArray<PackedScene> p_segment_arr) 
+void AKIK_Procedural_Rig::set_segments(TypedArray<PackedScene> p_segment_arr) 
 {	
 	// Iterate through the input array and replace null PackedScenes with the default segment
     for (int i = 0; i < p_segment_arr.size(); ++i) {
@@ -176,7 +176,7 @@ void DampedTransformRig::set_segments(TypedArray<PackedScene> p_segment_arr)
 	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
 }
 
-TypedArray<PackedScene> DampedTransformRig::get_segments() const
+TypedArray<PackedScene> AKIK_Procedural_Rig::get_segments() const
 {
     return segments;
 }

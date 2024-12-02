@@ -4,8 +4,8 @@
 
 namespace godot {
 
-class DampedTransformRig : public Node3D {
-	GDCLASS(DampedTransformRig, Node3D)
+class AKIK_Procedural_Rig : public Node3D {
+	GDCLASS(AKIK_Procedural_Rig, Node3D)
 
 private:
 	float segment_spacing;
@@ -20,8 +20,8 @@ protected:
 	static void _bind_methods();
 
 public:
-	DampedTransformRig();
-	~DampedTransformRig();
+	AKIK_Procedural_Rig();
+	~AKIK_Procedural_Rig();
  
 	void _ready() override;
 	void _process(double delta) override;
