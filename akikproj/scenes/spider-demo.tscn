@@ -1,0 +1,191 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8gi4ot5dq5sq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_od85p"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vn0b"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvf1m"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i25jk"]
+radius = 0.25
+height = 0.5
+
+[node name="Spider-demo" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_od85p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_3vn0b")
+skeleton = NodePath("../..")
+
+[node name="Spider" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.418, 0)
+mesh = SubResource("BoxMesh_wvf1m")
+
+[node name="AKIK_chain_FR" type="AKIK_chain" parent="Spider"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+expected_end_path = NodePath("../../Spider-Targets/target_FR")
+is_following = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="Spider/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="Spider/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0991091, -1.18125, 0.307939)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="Spider/AKIK_chain_FR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.543183, -1.92293, 0.501285)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_ground_targeter_FR" type="AKIK_ground_targeter" parent="Spider"]
+target_path = NodePath("../../Spider-Targets/target_FR")
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_FL" type="AKIK_chain" parent="Spider"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+expected_end_path = NodePath("../../Spider-Targets/target_FL")
+is_following = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="Spider/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="Spider/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69686, -0.9746, -0.254067)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="Spider/AKIK_chain_FL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.483696, -1.92002, -0.500526)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_FL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_ground_targeter_FL" type="AKIK_ground_targeter" parent="Spider"]
+target_path = NodePath("../../Spider-Targets/target_FL")
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BR" type="AKIK_chain" parent="Spider"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+expected_end_path = NodePath("../../Spider-Targets/target_BR")
+is_following = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="Spider/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="Spider/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734079, -0.948666, 0.247306)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="Spider/AKIK_chain_BR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33345, -1.72325, 0.449231)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_ground_targeter_BR" type="AKIK_ground_targeter" parent="Spider"]
+target_path = NodePath("../../Spider-Targets/target_BR")
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BL" type="AKIK_chain" parent="Spider"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+expected_end_path = NodePath("../../Spider-Targets/target_BL")
+is_following = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="Spider/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="Spider/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.691002, -0.978492, -0.255081)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="Spider/AKIK_chain_BL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.460568, -1.92011, -0.500551)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spider/AKIK_chain_BL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_i25jk")
+
+[node name="AKIK_ground_targeter_BL" type="AKIK_ground_targeter" parent="Spider"]
+target_path = NodePath("../../Spider-Targets/target_BL")
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+target_position = Vector3(0, -2, 0)
+
+[node name="Spider-Targets" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02943, 0)
+
+[node name="target_FR" type="Node3D" parent="Spider-Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03892, -0.52943, 1)
+
+[node name="target_FL" type="Node3D" parent="Spider-Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0158496, -0.52943, -1)
+
+[node name="target_BR" type="Node3D" parent="Spider-Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.98415, -0.52943, 1)
+
+[node name="target_BL" type="Node3D" parent="Spider-Targets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.961085, -0.52943, -1)

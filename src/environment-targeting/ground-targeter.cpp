@@ -35,8 +35,6 @@ void AKIK_ground_targeter::_process(double p_delta) {
 }
 
 bool AKIK_ground_targeter::is_jump_margin_traveled() {
-    UtilityFunctions::print("" + target->get_global_position() + ", " + get_collision_point());
-    UtilityFunctions::print(target->get_global_position().distance_to(get_collision_point()));
     return target->get_global_position().distance_to(get_collision_point()) > jump_margin;
 }
 

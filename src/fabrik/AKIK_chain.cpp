@@ -39,7 +39,7 @@ void AKIK_chain::_process(double p_delta) {
     
     Input* input = Input::get_singleton();
 
-    if (is_following || input->is_action_pressed("fabrik")) { //TODO: this doesn't work cause input map isn't loaded in editor
+    if (is_following) { //TODO: this doesn't work cause input map isn't loaded in editor
         fabrik_step();
     }
 }
