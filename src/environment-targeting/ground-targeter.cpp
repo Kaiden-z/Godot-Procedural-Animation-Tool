@@ -31,6 +31,7 @@ void AKIK_ground_targeter::_process(double p_delta) {
     force_raycast_update();
     if (is_colliding() && is_jump_margin_traveled()) {
         target->set_global_position(get_collision_point());
+        //instead of instant set, need to draw a parabola arc peaking at a height above where raycast hits.
     }
 }
 

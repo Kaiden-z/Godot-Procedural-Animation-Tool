@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct4iecxafejud"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2ydpt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcsla"]
+albedo_color = Color(1, 0.470588, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nbrcj"]
+material = SubResource("StandardMaterial3D_hcsla")
+
+[node name="Follow-interp-demo" type="Node3D"]
+
+[node name="AKIK_follower" type="AKIK_follower" parent="."]
+target_path = NodePath("../Node3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower"]
+mesh = SubResource("SphereMesh_2ydpt")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("SphereMesh_nbrcj")

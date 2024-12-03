@@ -18,6 +18,7 @@ sources = Glob("src/*.cpp")
 sources.extend(Glob("src/fabrik/*.cpp"))
 sources.extend(Glob("src/environment-targeting/*.cpp"))
 sources.extend(Glob("src/dampedtransform/*.cpp"))
+sources.extend(Glob("src/custom-position-interpolation/*.cpp"))
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

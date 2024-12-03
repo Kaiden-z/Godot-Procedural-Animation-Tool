@@ -8,6 +8,8 @@
 
 #include "environment-targeting/ground-targeter.h"
 
+#include "custom-position-interpolation/follower.h"
+
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -24,6 +26,7 @@ void initialize_example_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(AKIK_joint);
 	GDREGISTER_CLASS(AKIK_ground_targeter);
 	GDREGISTER_CLASS(DampedTransformRig);
+	GDREGISTER_CLASS(AKIK_follower);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) {
