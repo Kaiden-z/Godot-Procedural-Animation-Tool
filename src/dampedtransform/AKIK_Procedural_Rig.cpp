@@ -22,6 +22,14 @@ void AKIK_Procedural_Rig::_bind_methods()
 	ClassDB::bind_method(D_METHOD("get_segments"), &AKIK_Procedural_Rig::get_segments);
     ClassDB::bind_method(D_METHOD("set_segments", "p_segment_arr"), &AKIK_Procedural_Rig::set_segments);
     ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "segments"), "set_segments", "get_segments");
+
+	ClassDB::bind_method(D_METHOD("get_damping_enabled"), &AKIK_Procedural_Rig::get_damping_enabled);
+    ClassDB::bind_method(D_METHOD("set_damping_enabled", "p_damping_enabled"), &AKIK_Procedural_Rig::set_damping_enabled);
+    ADD_PROPERTY(PropertyInfo(Variant::BOOL, "damping enabled"), "set_damping_enabled", "get_damping_enabled");
+
+	ClassDB::bind_method(D_METHOD("get_damping_speed"), &AKIK_Procedural_Rig::get_damping_speed);
+    ClassDB::bind_method(D_METHOD("set_damping_speed", "p_damping_speed"), &AKIK_Procedural_Rig::set_damping_speed);
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "damping speed"), "set_damping_speed", "get_damping_speed");
 }
 
 AKIK_Procedural_Rig::AKIK_Procedural_Rig() 
@@ -31,8 +39,10 @@ AKIK_Procedural_Rig::AKIK_Procedural_Rig()
 	angle_constraint = 90.f;
 	default_segment = Ref<PackedScene>();
 	segments = TypedArray<PackedScene>();
+	damping_enabled = false;
+	damping_speed = 20.f;
+
 	chain = Vector<Node3D*>();
-	
 }
 
 AKIK_Procedural_Rig::~AKIK_Procedural_Rig()
@@ -64,14 +74,23 @@ void AKIK_Procedural_Rig::_process(double delta)
 
         Vector3 current_dir = diff.normalized();
         Vector3 prev_dir = (i > 0) ? (node->get_global_position() - chain[i - 1]->get_global_position()).normalized() : Vector3(0, 0, -1);
-        float angle = current_dir.angle_to(prev_dir);
 
-        if (angle > max_angle && i > 0) {
-            Vector3 axis = prev_dir.cross(current_dir).normalized();
-            Transform3D rotation_transform = get_transform().rotated(axis, max_angle);
-            constrained_offset = rotation_transform.basis.xform(prev_dir) * segment_spacing;
+		// Apply damping
+		Vector3 damped_dir = current_dir;
+        if (i > 0 && damping_enabled) {
+            Vector3 ideal_dir = (prev_dir + current_dir).normalized();
+            damped_dir = current_dir.lerp(ideal_dir, delta * damping_speed);
+
+            float angle = damped_dir.angle_to(prev_dir);
+            if (angle > max_angle) {
+                Vector3 axis = prev_dir.cross(damped_dir).normalized();
+                Transform3D rotation_transform = get_transform().rotated(axis, max_angle);
+                damped_dir = rotation_transform.basis.xform(prev_dir).normalized();
+            }
         }
 
+		// Move next node to stay within constrained distance
+		constrained_offset = damped_dir * segment_spacing;
         next_node->set_global_position(node->get_global_position() + constrained_offset);
         node->look_at(next_node->get_global_position(), Vector3(0, 1, 0));		
 	}
@@ -179,4 +198,26 @@ void AKIK_Procedural_Rig::set_segments(TypedArray<PackedScene> p_segment_arr)
 TypedArray<PackedScene> AKIK_Procedural_Rig::get_segments() const
 {
     return segments;
+}
+
+void AKIK_Procedural_Rig::set_damping_enabled(bool p_damping_enabled)
+{
+	damping_enabled = p_damping_enabled;
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
+}
+
+bool AKIK_Procedural_Rig::get_damping_enabled() const
+{
+    return damping_enabled;
+}
+
+void AKIK_Procedural_Rig::set_damping_speed(float p_damping_speed)
+{
+	damping_speed = godot::Math::clamp<float>(p_damping_speed, 0.f, std::numeric_limits<float>::max());;
+	if (Engine::get_singleton()->is_editor_hint() && is_node_ready()) refresh_rig(); 
+}
+
+float AKIK_Procedural_Rig::get_damping_speed() const
+{
+    return damping_speed;
 }

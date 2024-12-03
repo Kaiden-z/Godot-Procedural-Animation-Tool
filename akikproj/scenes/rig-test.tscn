@@ -48,8 +48,10 @@ transform = Transform3D(0.999877, -0.00577993, 0.0145629, 0, 0.929469, 0.368901,
 script = ExtResource("1_fvnck")
 MoveSpeed = 20.0
 
-[node name="DampedTransformRig" type="AKIK_Procedural_Rig" parent="CharacterBody3D"]
+[node name="AKIK_Procedural_Rig" type="AKIK_Procedural_Rig" parent="CharacterBody3D"]
 segment_spacing = 1.5
 angle_constraint_(degrees) = 60.0
 default_segment = ExtResource("2_l7eyp")
 segments = Array[PackedScene]([ExtResource("3_1h44t"), ExtResource("2_l7eyp"), ExtResource("4_gj8ca"), ExtResource("2_l7eyp"), ExtResource("4_gj8ca"), ExtResource("2_l7eyp"), ExtResource("2_l7eyp"), ExtResource("2_l7eyp")])
+"damping enabled" = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
