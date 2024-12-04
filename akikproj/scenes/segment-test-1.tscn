@@ -3,6 +3,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_co14a"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yq8t3"]
+size = Vector3(0.3, 0.3, 1)
 
 [node name="RigidBody3D" type="RigidBody3D"]
 
