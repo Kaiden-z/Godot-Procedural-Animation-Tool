@@ -54,4 +54,3 @@ angle_constraint_(degrees) = 60.0
 default_segment = ExtResource("2_l7eyp")
 segments = Array[PackedScene]([ExtResource("3_1h44t"), ExtResource("2_l7eyp"), ExtResource("4_gj8ca"), ExtResource("2_l7eyp"), ExtResource("4_gj8ca"), ExtResource("2_l7eyp"), ExtResource("2_l7eyp"), ExtResource("2_l7eyp")])
 "damping enabled" = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

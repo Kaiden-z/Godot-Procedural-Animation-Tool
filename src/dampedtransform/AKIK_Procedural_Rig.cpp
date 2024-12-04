@@ -77,9 +77,11 @@ void AKIK_Procedural_Rig::_process(double delta)
 
 		// Apply damping
 		Vector3 damped_dir = current_dir;
-        if (i > 0 && damping_enabled) {
-            Vector3 ideal_dir = (prev_dir + current_dir).normalized();
-            damped_dir = current_dir.lerp(ideal_dir, delta * damping_speed);
+        if (i > 0) {
+			if (damping_enabled) {
+				Vector3 ideal_dir = (prev_dir + current_dir).normalized();
+            	damped_dir = current_dir.lerp(ideal_dir, delta * damping_speed);
+			}
 
             float angle = damped_dir.angle_to(prev_dir);
             if (angle > max_angle) {
