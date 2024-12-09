@@ -63,7 +63,7 @@ target_path = NodePath("../Targets/Follower_tgt")
 frequency_coefficient = 1.5
 damping_coefficient = 0.75
 initial_coefficient = -2.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-07, 1.22379, 16.4245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36314, 1.3106, 9.90726)
 
 [node name="ProceduralEntity" type="MeshInstance3D" parent="AKIK_follower"]
 transform = Transform3D(-1, 8.74227e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74227e-08, 1, 4.37114e-08, -1.4013e-45, -8.9188e-34, 1.13563e-33)
@@ -91,14 +91,14 @@ mesh = SubResource("BoxMesh_soqsk")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FL_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 0, -0.133741, -0.584905)
+transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 1.04308e-07, 0.329694, -0.5013)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FL_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_soqsk")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FL_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 5.96046e-08, -0.267483, -1.16981)
+transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 2.23517e-07, 0.659388, -1.0026)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FL_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_soqsk")
@@ -117,7 +117,7 @@ is_following = true
 
 [node name="AKIK_joint" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FR_Chain"]
 next_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999995, 1.49012e-07, -8.88178e-15, -1.49012e-07, 0.999995, 3.55271e-15, -2.4869e-13, -3.51719e-12, 1, 0.59999, 0.600019, 2.40803e-05)
+transform = Transform3D(0.999995, 1.49012e-07, -8.88178e-15, -1.49012e-07, 0.999995, 3.55271e-15, -2.4869e-13, -3.51719e-12, 1, 0.600002, 0.600041, 0.000105739)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FR_Chain/AKIK_joint"]
 mesh = SubResource("BoxMesh_srklt")
@@ -125,14 +125,14 @@ mesh = SubResource("BoxMesh_srklt")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FR_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.999835, 2.59218e-06, 2.07755e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.599995, 0.743423, -0.582587)
+transform = Transform3D(0.999835, 2.59218e-06, 2.08295e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.600001, 0.929707, -0.501215)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FR_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_srklt")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FR_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999835, 2.59218e-06, 2.07755e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.6, 0.886824, -1.16519)
+transform = Transform3D(0.999835, 2.59218e-06, 2.08295e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.600001, 1.25937, -1.00253)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FR_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_srklt")
@@ -152,7 +152,7 @@ is_following = true
 
 [node name="AKIK_joint" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BL_Chain"]
 next_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999994, -3.27823e-07, 6.74881e-14, 3.27823e-07, 0.999994, -2.4869e-13, -3.8547e-13, 4.68958e-13, 1, -0.600013, -0.800045, -1.27554e-05)
+transform = Transform3D(0.999994, -3.27823e-07, 6.74612e-14, 3.27823e-07, 0.999994, -2.4869e-13, -3.8547e-13, 4.68958e-13, 1, -0.600051, -0.800024, -6.19888e-05)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BL_Chain/AKIK_joint"]
 mesh = SubResource("BoxMesh_fi3to")
@@ -160,14 +160,14 @@ mesh = SubResource("BoxMesh_fi3to")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BL_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.99984, 2.59217e-06, 5.79259e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600007, -0.933767, -0.584923)
+transform = Transform3D(0.99984, 2.59217e-06, 5.77095e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600031, -0.470312, -0.501352)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BL_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_fi3to")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BL_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.99984, 2.59217e-06, 5.79259e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600001, -1.06749, -1.16983)
+transform = Transform3D(0.99984, 2.59217e-06, 5.77095e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600012, -0.140602, -1.00264)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BL_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_fi3to")
@@ -187,7 +187,7 @@ is_following = true
 
 [node name="AKIK_joint" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BR_Chain"]
 next_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.998765, 1.2799e-06, 4.78973e-14, -1.2799e-06, 0.998765, -7.35376e-11, 6.95182e-11, -1.42357e-11, 1, 0.599941, -0.799396, 1.66893e-06)
+transform = Transform3D(0.998765, 1.2799e-06, 4.78973e-14, -1.2799e-06, 0.998765, -7.35376e-11, 6.95182e-11, -1.42357e-11, 1, 0.599904, -0.799437, -5.126e-05)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BR_Chain/AKIK_joint"]
 mesh = SubResource("BoxMesh_2pgrv")
@@ -195,14 +195,14 @@ mesh = SubResource("BoxMesh_2pgrv")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BR_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.998605, 1.48844e-06, 4.74847e-13, -1.48828e-06, 0.998605, -8.39542e-11, -8.99422e-08, 1.06368e-11, 1, 0.599967, -1.07248, -0.534245)
+transform = Transform3D(0.998605, 1.48844e-06, 4.72625e-13, -1.48828e-06, 0.998605, -8.39542e-11, -9.02335e-08, 1.06368e-11, 1, 0.599941, -0.469887, -0.501441)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BR_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_2pgrv")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BR_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999223, 1.57099e-06, 6.46465e-13, -1.5709e-06, 0.999223, -4.71516e-11, -8.94067e-08, 2.23963e-11, 1, 0.599993, -1.34557, -1.06849)
+transform = Transform3D(0.999223, 1.57099e-06, 6.46465e-13, -1.5709e-06, 0.999223, -4.71516e-11, -8.94067e-08, 2.23963e-11, 1, 0.599978, -0.140337, -1.00283)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BR_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_2pgrv")
@@ -222,19 +222,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00792885, -1.07069, 8.1454
 [node name="Targets" type="Node3D" parent="."]
 
 [node name="FL" type="Node3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.599999, 0, 16.7447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23686, 0, 11.3692)
 
 [node name="FR" type="Node3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600001, 0, 17.3258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96314, 0, 11.3692)
 
 [node name="BL" type="Node3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.599999, 0, 15.3447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23686, 0, 9.96921)
 
 [node name="BR" type="Node3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600001, 0, 14.9996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96314, 0, 9.96921)
 
 [node name="Follower_tgt" type="Node3D" parent="Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.15256e-07, 1.22379, 16.4245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36314, 1.3106, 9.90726)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c66gcgk0lyp1f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m4jt5"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_pdwib"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_w2vta"]
+
+[node name="Body" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_m4jt5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.498097, -0.0871557, 0, 0.0435779, 0.996195, 0, 0.5, -0.2)
+mesh = SubResource("PrismMesh_pdwib")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0206534, 0.13715, -0.297338, -0.243776, 0.00119765, 0.166206, 0.0514474, 0.0607332, 0.668181, 0.425985, -0.0945984, 0.147504)
+mesh = SubResource("PrismMesh_w2vta")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0205341, -0.137145, 0.297472, 0.243779, 0.00127646, 0.166161, -0.0514842, 0.0607433, 0.668133, -0.426, -0.095, 0.148)
+mesh = SubResource("PrismMesh_w2vta")

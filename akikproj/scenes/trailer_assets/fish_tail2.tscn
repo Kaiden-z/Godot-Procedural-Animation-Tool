@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://evxd4e1tswso"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_7sum8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -0.258819, -0.724444, 0, 0.965926, -0.194114, 0, 0.35, 0)
+mesh = SubResource("PrismMesh_7sum8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.258819, -0.724444, 0, 0.965926, 0.194114, 0, -0.35, 0)
+mesh = SubResource("PrismMesh_7sum8")

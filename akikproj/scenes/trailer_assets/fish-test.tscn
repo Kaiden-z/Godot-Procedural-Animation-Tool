@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dgkbbiggeqqed"]
 
-[ext_resource type="PackedScene" uid="uid://ivb2fwj4qwl6" path="res://scenes/segment-test-1.tscn" id="1_yud6l"]
+[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish.tscn" id="1_bgq74"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ciiv5"]
 sky_top_color = Color(0.325886, 0.459976, 0.607993, 1)
@@ -50,10 +50,10 @@ shadow_enabled = true
 shadow_blur = 1.5
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.930565, 0.366128, 0, -0.366128, 0.930565, 0, 5.85, 11.0542)
+transform = Transform3D(0.999976, -0.00216173, 0.00659511, 0, 0.950256, 0.311473, -0.00694036, -0.311465, 0.950233, 0.0525042, 3.67074, 8.59386)
 current = true
 fov = 90.0
 size = 3.34
 
-[node name="Node3D" parent="." instance=ExtResource("1_yud6l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.77324, 1.85307, 0.223267)
+[node name="Node3D" parent="." instance=ExtResource("1_bgq74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58274, 0)
