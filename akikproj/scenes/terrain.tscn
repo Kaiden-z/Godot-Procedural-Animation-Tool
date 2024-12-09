@@ -85,7 +85,7 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719254, -2.08632, 0.281877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719255, -2.08632, 0.281877)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint3"]
 layers = 65537
@@ -111,6 +111,9 @@ next_path = NodePath("../AKIK_joint2")
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint2")
+
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
@@ -120,9 +123,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395957, -1.14854, -0.155176
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint3")
+
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719254, -2.08632, -0.281877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719255, -2.08632, -0.281877)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint3"]
 layers = 65537
@@ -148,6 +154,9 @@ next_path = NodePath("../AKIK_joint2")
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint2")
+
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
@@ -157,9 +166,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090216, -1.21042, 0.163537)
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint3")
+
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, 0.297064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, 0.297065)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint3"]
 layers = 65537
@@ -185,6 +197,9 @@ next_path = NodePath("../AKIK_joint2")
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint2")
+
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
@@ -194,9 +209,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090216, -1.21042, -0.163537
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("2_04hmx")]
+target_node = NodePath("../../AKIK_joint3")
+
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, -0.297064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, -0.297065)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint3"]
 layers = 65537
