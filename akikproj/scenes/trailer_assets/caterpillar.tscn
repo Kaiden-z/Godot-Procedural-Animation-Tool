@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq3csj6tgi5el"]
+[gd_scene load_steps=2 format=3 uid="uid://dxeohutys1lpj"]
 
-[ext_resource type="PackedScene" uid="uid://qq2vdgxf1vyq" path="res://scenes/trailer_assets/caterpillar_segment.tscn" id="1_wk5lo"]
+[ext_resource type="PackedScene" uid="uid://cg6hcagcjlk4q" path="res://scenes/trailer_assets/caterpillar-segment.tscn" id="1_qt5jn"]
 
 [node name="Caterpillar" type="Node3D"]
+
+[node name="AKIK_Procedural_Rig" type="AKIK_Procedural_Rig" parent="."]
+segment_spacing = 2.0
+segments = Array[PackedScene]([ExtResource("1_qt5jn"), ExtResource("1_qt5jn"), ExtResource("1_qt5jn"), ExtResource("1_qt5jn")])

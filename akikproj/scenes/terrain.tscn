@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dowxsbbvdqb1a"]
+[gd_scene load_steps=7 format=3 uid="uid://dowxsbbvdqb1a"]
 
 [ext_resource type="Script" path="res://scripts/character_body_3d.gd" id="1_awi40"]
+[ext_resource type="PackedScene" uid="uid://dxeohutys1lpj" path="res://scenes/trailer_assets/caterpillar.tscn" id="2_kgujc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_416o2"]
 albedo_color = Color(0.25208, 0.493693, 0.233761, 1)
@@ -35,12 +36,14 @@ shape = SubResource("BoxShape3D_w6wg6")
 transform = Transform3D(1, 8.72665e-05, 0, -5.33923e-05, 0.611831, 0.790989, 6.90268e-05, -0.790989, 0.611831, 0, 4.81883, 3.33588)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.20076, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.39935, 0)
 script = ExtResource("1_awi40")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 0, 2.18709, -4.47043)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.326538, -2.02954)
 shape = SubResource("BoxShape3D_4128u")
+
+[node name="Caterpillar" parent="CharacterBody3D" instance=ExtResource("2_kgujc")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 0, 6.456, -14.505)

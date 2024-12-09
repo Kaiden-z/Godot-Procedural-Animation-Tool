@@ -60,7 +60,7 @@ void AKIK_chain::_process(double p_delta) {
 void AKIK_chain::refresh_target() {
     if (this->expected_end_node == nullptr) {
         this->expected_end_node = memnew(Node3D);
-        // this->expected_end_node->set_as_top_level(true);
+        this->expected_end_node->set_as_top_level(true);
     }
     this->targeter = (this->find_child("AKIK_ground_targeter")) ? this->get_node<AKIK_ground_targeter>("AKIK_ground_targeter") : nullptr;
     if (this->targeter != nullptr) {

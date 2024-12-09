@@ -9,7 +9,7 @@ class AKIK_ground_targeter : public RayCast3D {
 
     private:
         float length;
-        Node3D* target;
+        Node3D* target = nullptr;
         NodePath target_path;
         float jump_margin = 0.0f;
 

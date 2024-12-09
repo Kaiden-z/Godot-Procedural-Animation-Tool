@@ -16,10 +16,10 @@ class AKIK_chain : public Node3D {
         NodePath start_path;
         AKIK_joint* end;
         NodePath end_path;
-        AKIK_ground_targeter* targeter;
+        AKIK_ground_targeter* targeter = nullptr;
 
         NodePath expected_end_path;
-        Node3D* expected_end_node;
+        Node3D* expected_end_node = nullptr;
 
         bool is_following = false;
 
