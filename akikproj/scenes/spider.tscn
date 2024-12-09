@@ -81,6 +81,7 @@ layers = 65537
 mesh = SubResource("SphereMesh_81q4j")
 
 [node name="AKIK_ground_targeter_FL" type="AKIK_ground_targeter" parent="body"]
+length = 4.29494e+24
 target_path = NodePath("../../targets/target_FL")
 jump_margin = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)

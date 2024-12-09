@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dowxsbbvdqb1a"]
 
 [ext_resource type="Script" path="res://scripts/character_body_3d.gd" id="1_awi40"]
-[ext_resource type="PackedScene" path="res://scenes/segment.tscn" id="2_04hmx"]
+[ext_resource type="PackedScene" uid="uid://cpyirqdf7gc6l" path="res://scenes/segment.tscn" id="2_04hmx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_416o2"]
 albedo_color = Color(0.25208, 0.493693, 0.233761, 1)
@@ -74,7 +74,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395957, -1.14854, 0.155176)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12019, -1.00978, -0.682571)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2"]
 layers = 65537
@@ -85,13 +85,14 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719255, -2.08632, 0.281877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218325, -1.83426, -1.23989)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint3"]
 layers = 65537
 mesh = SubResource("SphereMesh_2uvfe")
 
 [node name="AKIK_ground_targeter_FR" type="AKIK_ground_targeter" parent="CharacterBody3D"]
+length = 0.5
 target_path = NodePath("../../Spider-Targets/target_FR")
 jump_margin = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
@@ -117,7 +118,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395957, -1.14854, -0.155176)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.107189, -0.900553, -0.823116)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2"]
 layers = 65537
@@ -128,7 +129,7 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719255, -2.08632, -0.281877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.194709, -1.63585, -1.49519)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint3"]
 layers = 65537
@@ -160,7 +161,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090216, -1.21042, 0.163537)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12019, -1.00978, -0.68257)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2"]
 layers = 65537
@@ -171,7 +172,7 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, 0.297065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.218325, -1.83426, -1.23989)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint3"]
 layers = 65537
@@ -204,7 +205,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090216, -1.21042, -0.163537)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.107189, -0.900551, -0.823115)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2"]
 layers = 65537
@@ -215,7 +216,7 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163877, -2.19873, -0.297065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.194709, -1.63585, -1.49519)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint3"]
 layers = 65537
@@ -231,13 +232,13 @@ target_position = Vector3(0, -2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02943, 0)
 
 [node name="target_FR" type="Node3D" parent="Spider-Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77583, -0.52943, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.02943, -2.33954)
 
 [node name="target_FL" type="Node3D" parent="Spider-Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77583, -0.52943, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.02943, -4.33954)
 
 [node name="target_BR" type="Node3D" parent="Spider-Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224172, -0.52943, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.02943, -2.33954)
 
 [node name="target_BL" type="Node3D" parent="Spider-Targets"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.224172, -0.52943, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.02943, -4.33954)
