@@ -20,7 +20,7 @@ void AKIK_ground_targeter::_bind_methods() {
 }
 
 void AKIK_ground_targeter::_ready() {
-    this->target = (this->target_path == NodePath("")) ? nullptr : this->get_node<Node3D>(this->target_path);
+    // this->target = (this->target_path == NodePath("")) ? nullptr : this->get_node<Node3D>(this->target_path);
 }
 
 void AKIK_ground_targeter::_process(double p_delta) {
@@ -58,4 +58,11 @@ NodePath AKIK_ground_targeter::get_target_path() {
 }
 void AKIK_ground_targeter::set_target_path(NodePath path) {
     target_path = path;
+}
+
+Node3D* AKIK_ground_targeter::get_target() {
+    return this->target;
+}
+void AKIK_ground_targeter::set_target(Node3D* target) {
+    this->target = target;
 }

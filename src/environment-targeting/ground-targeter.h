@@ -27,4 +27,7 @@ class AKIK_ground_targeter : public RayCast3D {
 
         NodePath get_target_path();
         void set_target_path(NodePath path);
+
+        Node3D* get_target();
+        void set_target(Node3D* target);
 };

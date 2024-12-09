@@ -2,6 +2,16 @@
 
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/classes/input.hpp>
+#include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/window.hpp>
+
+// AKIK_chain::AKIK_chain() {
+//     this->expected_end_node = nullptr;
+// }
+
+// AKIK_chain::~AKIK_chain() {  //TODO: This is a memory leak currently, but this deconstructor doesn't work.
+//     this->expected_end_node->queue_free();
+// }
 
 void AKIK_chain::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_start_path"), &AKIK_chain::get_start_path);
@@ -22,13 +32,18 @@ void AKIK_chain::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_is_following"), &AKIK_chain::get_is_following);
     ClassDB::bind_method(D_METHOD("set_is_following", "p_follow"), &AKIK_chain::set_is_following);
     ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_following"), "set_is_following", "get_is_following");
+
+    ClassDB::bind_method(D_METHOD("get_targeter"), &AKIK_chain::get_targeter);
+    ClassDB::bind_method(D_METHOD("set_targeter", "p_targeter"), &AKIK_chain::set_targeter);
+    ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "targeter"), "set_targeter",
+                 "get_targeter");
 }
 
 void AKIK_chain::_ready() {
     UtilityFunctions::print("ready");
     this->start = (this->start_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(this->start_path);
     this->end = (this->end_path == NodePath("")) ? nullptr : this->get_node<AKIK_joint>(this->end_path);
-    this->expected_end_node = (this->expected_end_path == NodePath("")) ? nullptr : this->get_node<Node3D>(this->expected_end_path);
+    refresh_target();
 }
 
 void AKIK_chain::_process(double p_delta) {
@@ -36,12 +51,23 @@ void AKIK_chain::_process(double p_delta) {
         // UtilityFunctions::print("Chain not set.");
         return;
     }
-    
-    Input* input = Input::get_singleton();
 
     if (is_following) { //TODO: this doesn't work cause input map isn't loaded in editor
         fabrik_step();
     }
+}
+
+void AKIK_chain::refresh_target() {
+    if (this->expected_end_node == nullptr) {
+        this->expected_end_node = memnew(Node3D);
+        // this->expected_end_node->set_as_top_level(true);
+    }
+    this->targeter = (this->find_child("AKIK_ground_targeter")) ? this->get_node<AKIK_ground_targeter>("AKIK_ground_targeter") : nullptr;
+    if (this->targeter != nullptr) {
+        this->targeter->set_target(this->expected_end_node);
+    }
+    get_parent()->get_parent()->call_deferred("add_child", this->expected_end_node);
+    // this->expected_end_node->call_deferred("set_global_position", this->get_global_position());
 }
 
 void AKIK_chain::fabrik_step() {
@@ -134,4 +160,13 @@ bool AKIK_chain::get_is_following() {
 }
 void AKIK_chain::set_is_following(bool follow) {
     is_following = follow;
+}
+
+NodePath AKIK_chain::get_targeter() {
+    if (targeter == nullptr) return NodePath("");
+    return targeter->get_path();
+}
+void AKIK_chain::set_targeter(NodePath targeter) {
+    this->targeter = (this->expected_end_path == NodePath("")) ? nullptr : this->get_node<AKIK_ground_targeter>("AKIK_ground_targeter");
+    return;
 }

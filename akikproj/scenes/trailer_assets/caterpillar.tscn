@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq3csj6tgi5el"]
+
+[ext_resource type="PackedScene" uid="uid://qq2vdgxf1vyq" path="res://scenes/trailer_assets/caterpillar_segment.tscn" id="1_wk5lo"]
+
+[node name="Caterpillar" type="Node3D"]
