@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0nmolw4c2fih"]
 
-[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish.tscn" id="1_o4ifj"]
+[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish/fish.tscn" id="1_o4ifj"]
 [ext_resource type="Script" path="res://scripts/Spider.cs" id="2_dg7m3"]
 [ext_resource type="PackedScene" uid="uid://cpyirqdf7gc6l" path="res://scenes/segment.tscn" id="3_u7e7e"]
 [ext_resource type="PackedScene" uid="uid://dxeohutys1lpj" path="res://scenes/trailer_assets/caterpillar.tscn" id="4_c8nne"]
@@ -121,7 +121,6 @@ visible = false
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_FR/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
@@ -137,7 +136,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0237535, -0.892589, 0.83829)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0237555, -0.892586, 0.838292)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2"]
 layers = 65537
@@ -163,7 +162,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_FL/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
@@ -179,7 +177,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185796, -1.17244, 0.301476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.185797, -1.17244, 0.30147)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2"]
 layers = 65537
@@ -205,7 +203,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_BR/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
@@ -222,7 +219,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0.0237538, -0.892588, 0.838289)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0.0237558, -0.892585, 0.838292)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2"]
 layers = 65537
@@ -249,7 +246,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_BL/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
@@ -266,7 +262,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.185789, -1.17243, 0.301491)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.18579, -1.17243, 0.301487)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2"]
 layers = 65537
@@ -284,6 +280,7 @@ layers = 65537
 mesh = SubResource("SphereMesh_waavd")
 
 [node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D/AKIK_chain_BL"]
+length = 2.21361e-05
 jump_margin = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 target_position = Vector3(0, -2, 0)
@@ -309,7 +306,6 @@ visible = false
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_FR/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FR"]
@@ -325,7 +321,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.210838, -1.16697, -0.306166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.210836, -1.16697, -0.306172)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint2"]
 layers = 65537
@@ -351,7 +347,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_FL/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
@@ -367,7 +362,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0388871, -0.865876, -0.865312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0388918, -0.865882, -0.865306)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint2"]
 layers = 65537
@@ -378,7 +373,7 @@ target_node = NodePath("../../AKIK_joint3")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499348, -1.67513, -0.500516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499348, -1.67513, -0.500517)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint3"]
 layers = 65537
@@ -393,7 +388,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_BR/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BR"]
@@ -410,7 +404,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BR"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.210838, -1.16697, -0.306166)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.210836, -1.16697, -0.306172)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint2"]
 layers = 65537
@@ -437,7 +431,6 @@ target_position = Vector3(0, -2, 0)
 start_path = NodePath("AKIK_joint")
 end_path = NodePath("AKIK_joint3")
 is_following = true
-targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_BL/AKIK_ground_targeter")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
 
 [node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BL"]
@@ -454,7 +447,7 @@ target_node = NodePath("../../AKIK_joint2")
 [node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BL"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.0388823, -0.865869, -0.865317)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.0388873, -0.865875, -0.86531)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint2"]
 layers = 65537

@@ -91,14 +91,14 @@ mesh = SubResource("BoxMesh_soqsk")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FL_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 5.96046e-08, 0.329691, -0.501303)
+transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 0.0134181, -0.595238, -0.0742457)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FL_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_soqsk")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FL_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 1.19209e-07, 0.659384, -1.00261)
+transform = Transform3D(0.999848, 2.59223e-06, 6.47103e-13, -2.59222e-06, 0.999848, -9.62075e-12, -8.92893e-08, 2.79741e-11, 1, 0.0268363, -1.19048, -0.148492)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FL_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_soqsk")
@@ -126,14 +126,14 @@ mesh = SubResource("BoxMesh_srklt")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FR_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.999835, 2.59218e-06, 2.07799e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.600001, 0.929743, -0.501278)
+transform = Transform3D(0.999835, 2.59218e-06, 2.07802e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.545644, 0.00703049, -0.0738679)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FR_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_srklt")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/FR_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999835, 2.59218e-06, 2.07799e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.600001, 1.2594, -1.00259)
+transform = Transform3D(0.999835, 2.59218e-06, 2.07802e-13, -2.59217e-06, 0.999835, -1.01821e-11, -8.92895e-08, 2.69509e-11, 1, 0.491294, -0.585896, -0.147831)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/FR_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_srklt")
@@ -161,14 +161,14 @@ mesh = SubResource("BoxMesh_fi3to")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BL_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.99984, 2.59217e-06, 5.79083e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600031, -0.470336, -0.501317)
+transform = Transform3D(0.99984, 2.59217e-06, 5.7907e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.584608, -1.39367, -0.0854881)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BL_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_fi3to")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BL_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.99984, 2.59217e-06, 5.79083e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.600012, -0.140624, -1.00261)
+transform = Transform3D(0.99984, 2.59217e-06, 5.7907e-13, -2.59216e-06, 0.99984, -1.01892e-11, -8.94114e-08, 2.53237e-11, 1, -0.569164, -1.98736, -0.170921)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BL_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_fi3to")
@@ -196,14 +196,14 @@ mesh = SubResource("BoxMesh_2pgrv")
 [node name="AKIK_joint2" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BR_Chain"]
 next_path = NodePath("../AKIK_joint3")
 prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(0.998605, 1.48844e-06, 4.74671e-13, -1.48828e-06, 0.998605, -8.39542e-11, -8.99653e-08, 1.06368e-11, 1, 0.599941, -0.469925, -0.501384)
+transform = Transform3D(0.998605, 1.48844e-06, 4.74658e-13, -1.48828e-06, 0.998605, -8.39542e-11, -8.99669e-08, 1.06368e-11, 1, 0.537457, -1.39002, -0.0850323)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BR_Chain/AKIK_joint2"]
 mesh = SubResource("BoxMesh_2pgrv")
 
 [node name="AKIK_joint3" type="AKIK_joint" parent="AKIK_follower/ProceduralEntity/BR_Chain"]
 prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(0.999223, 1.57099e-06, 6.46465e-13, -1.5709e-06, 0.999223, -4.71516e-11, -8.94067e-08, 2.23963e-11, 1, 0.599977, -0.140374, -1.00278)
+transform = Transform3D(0.999223, 1.57099e-06, 6.46465e-13, -1.5709e-06, 0.999223, -4.71516e-11, -8.94067e-08, 2.23963e-11, 1, 0.475001, -1.98068, -0.170024)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AKIK_follower/ProceduralEntity/BR_Chain/AKIK_joint3"]
 mesh = SubResource("BoxMesh_2pgrv")

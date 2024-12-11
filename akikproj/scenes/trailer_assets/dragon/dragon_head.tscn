@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn345f1xc4g7b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iaa4e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_undbj"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_qhh36"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, -7.86805e-08, -1.8, 0, 1.8, -7.86805e-08, 0.0140712, 0.0315593, 0.000507712)
+mesh = SubResource("BoxMesh_iaa4e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0.970531, 0.161579)
+mesh = SubResource("BoxMesh_undbj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.968657, -0.0496805, 0, 0.248402, 0.193731, 0, 0.970531, 0.520483)
+mesh = SubResource("BoxMesh_undbj")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.188015, -0.340968, 0.000267798, -0.0524772, -0.720899, 0.12829, -0.0435497, -0.603361, -0.153433, -0.503976, -0.360803, -0.700712)
+mesh = SubResource("PrismMesh_qhh36")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.188015, 0.340968, -0.000267798, 0.0524772, -0.720899, 0.12829, 0.0435497, -0.603361, -0.153433, 0.504, -0.361, -0.701)
+mesh = SubResource("PrismMesh_qhh36")

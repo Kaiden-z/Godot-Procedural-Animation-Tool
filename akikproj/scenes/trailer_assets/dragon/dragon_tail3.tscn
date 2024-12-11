@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds05undsb6fdu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_thhhe"]
+bottom_radius = 0.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_31gx0"]
+lightmap_size_hint = Vector2i(14, 21)
+size = Vector3(2, 2, 0.8)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_thhhe")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.44, 0, 0, 0, 0.575, 0, 0, 0, 0.575, 0, 0.464121, 0.566654)
+mesh = SubResource("PrismMesh_31gx0")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.333, 0, 0, 0, 0.435, 0, 0, 0, 0.435, 0, 0.464121, -0.569029)
+mesh = SubResource("PrismMesh_31gx0")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.333, 0, 0, 0, -0.435, 6.56832e-08, 0, -6.56832e-08, -0.435, 0, -0.164095, -0.569029)
+mesh = SubResource("PrismMesh_31gx0")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.44, 0, 0, 0, -0.575, 8.68226e-08, 0, -8.68226e-08, -0.575, 0, -0.164, 0.567)
+mesh = SubResource("PrismMesh_31gx0")

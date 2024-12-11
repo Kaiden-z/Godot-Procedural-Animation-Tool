@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cehaybmv3bhnm"]
+
+[ext_resource type="Script" path="res://scenes/trailer_assets/dragon/dragon_player.gd" id="1_ott4x"]
+[ext_resource type="PackedScene" uid="uid://c06pcn6o25rif" path="res://scenes/trailer_assets/dragon/dragon.tscn" id="2_c42k4"]
+[ext_resource type="Script" path="res://scripts/Dragon.cs" id="3_16bbq"]
+
+[node name="Node3D" type="CharacterBody3D"]
+script = ExtResource("1_ott4x")
+sens = 0.2
+SPEED = 20.0
+
+[node name="Node3D" parent="." instance=ExtResource("2_c42k4")]
+script = ExtResource("3_16bbq")
+amplitude = 1.0
+
+[node name="CamOrigin" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CamOrigin"]
+transform = Transform3D(-1, 0, -8.74228e-08, -5.51721e-08, 0.775705, 0.631096, 6.78143e-08, 0.631096, -0.775705, 0, 5.38395, -9.86399)
+current = true

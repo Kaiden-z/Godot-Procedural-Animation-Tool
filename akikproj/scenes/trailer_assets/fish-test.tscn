@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgkbbiggeqqed"]
+[gd_scene load_steps=9 format=3 uid="uid://dgkbbiggeqqed"]
 
-[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish.tscn" id="1_bgq74"]
-[ext_resource type="Script" path="res://scripts/Spider.cs" id="3_7l36p"]
-[ext_resource type="PackedScene" uid="uid://cpyirqdf7gc6l" path="res://scenes/segment.tscn" id="3_wajpf"]
+[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish/fish.tscn" id="1_bgq74"]
+[ext_resource type="PackedScene" uid="uid://cehaybmv3bhnm" path="res://scenes/trailer_assets/dragon/dragon_player.tscn" id="4_rnn68"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ciiv5"]
 sky_top_color = Color(0.325886, 0.459976, 0.607993, 1)
@@ -31,15 +30,6 @@ albedo_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_eht6l"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r7l5b"]
-size = Vector3(1, 3.5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_peydf"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_waavd"]
-radius = 0.25
-height = 0.5
-
 [node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -60,238 +50,48 @@ light_energy = 2.0
 shadow_enabled = true
 shadow_blur = 1.5
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999998, 0.00178477, -1.42117e-06, 0, 0.000796275, 1, 0.00178477, -0.999999, 0.000796274, 0.396725, 15.4924, 0.311473)
-current = true
-fov = 90.0
-size = 3.34
-
 [node name="Node3D" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 
 [node name="Node3D2" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 frequency = 2.0
 
 [node name="Node3D3" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 frequency = 3.0
 
 [node name="Node3D4" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 frequency = 2.0
 
 [node name="Node3D5" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 
 [node name="Node3D6" parent="." instance=ExtResource("1_bgq74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 speed = 0.5
 amplitude = 8.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67628, 0)
-script = ExtResource("3_7l36p")
-speed = 0.75
-distance = 8.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("BoxShape3D_r7l5b")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("BoxMesh_peydf")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.11397, 3)
-visible = false
-
-[node name="AKIK_chain_FR" type="AKIK_chain" parent="CharacterBody3D"]
-start_path = NodePath("AKIK_joint")
-end_path = NodePath("AKIK_joint3")
-expected_end_path = NodePath("../../Spider-Targets/target_FR")
-is_following = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
-
-[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
-next_path = NodePath("../AKIK_joint2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint2")
-
-[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
-next_path = NodePath("../AKIK_joint3")
-prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235898, -0.790862, 0.904928)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint3")
-
-[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
-prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.497697, -1.66856, 0.503531)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint3"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="AKIK_ground_targeter_FR" type="AKIK_ground_targeter" parent="CharacterBody3D"]
-target_path = NodePath("../../Spider-Targets/target_FR")
-jump_margin = 2.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
-target_position = Vector3(0, -2, 0)
-
-[node name="AKIK_chain_FL" type="AKIK_chain" parent="CharacterBody3D"]
-start_path = NodePath("AKIK_joint")
-end_path = NodePath("AKIK_joint3")
-expected_end_path = NodePath("../../Spider-Targets/target_FL")
-is_following = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
-
-[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
-next_path = NodePath("../AKIK_joint2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint2")
-
-[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
-next_path = NodePath("../AKIK_joint3")
-prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338055, -1.13335, 0.318205)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint3")
-
-[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
-prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500777, -1.67889, -0.503926)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint3"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="AKIK_ground_targeter_FL" type="AKIK_ground_targeter" parent="CharacterBody3D"]
-target_path = NodePath("../../Spider-Targets/target_FL")
-jump_margin = 2.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-target_position = Vector3(0, -2, 0)
-
-[node name="AKIK_chain_BR" type="AKIK_chain" parent="CharacterBody3D"]
-start_path = NodePath("AKIK_joint")
-end_path = NodePath("AKIK_joint3")
-expected_end_path = NodePath("../../Spider-Targets/target_BR")
-is_following = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
-
-[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
-next_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint2")
-
-[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
-next_path = NodePath("../AKIK_joint3")
-prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.235898, -0.790862, 0.904928)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint3")
-
-[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
-prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.497697, -1.66856, 0.503531)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint3"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="AKIK_ground_targeter_BR" type="AKIK_ground_targeter" parent="CharacterBody3D"]
-length = 2.37529e-05
-target_path = NodePath("../../Spider-Targets/target_BR")
-jump_margin = 2.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-target_position = Vector3(0, -2, 0)
-
-[node name="AKIK_chain_BL" type="AKIK_chain" parent="CharacterBody3D"]
-start_path = NodePath("AKIK_joint")
-end_path = NodePath("AKIK_joint3")
-expected_end_path = NodePath("../../Spider-Targets/target_BL")
-is_following = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
-
-[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
-next_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint2")
-
-[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
-next_path = NodePath("../AKIK_joint3")
-prev_path = NodePath("../AKIK_joint")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.338051, -1.13334, 0.31822)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_wajpf")]
-target_node = NodePath("../../AKIK_joint3")
-
-[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
-prev_path = NodePath("../AKIK_joint2")
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.500777, -1.67888, -0.503926)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint3"]
-layers = 65537
-mesh = SubResource("SphereMesh_waavd")
-
-[node name="AKIK_ground_targeter_BL" type="AKIK_ground_targeter" parent="CharacterBody3D"]
-target_path = NodePath("../../Spider-Targets/target_BL")
-jump_margin = 2.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-target_position = Vector3(0, -2, 0)
-
 [node name="Spider-Targets" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16739, 0)
+visible = false
 
 [node name="target_FR" type="Node3D" parent="Spider-Targets"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.16739, 1)
@@ -304,3 +104,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.16739, 1)
 
 [node name="target_BL" type="Node3D" parent="Spider-Targets"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.16739, -1)
+
+[node name="Node3D7" parent="." instance=ExtResource("4_rnn68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.34872, 0)

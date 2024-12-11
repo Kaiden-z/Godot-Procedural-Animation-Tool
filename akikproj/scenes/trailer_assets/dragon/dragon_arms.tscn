@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://dycl2pnsa4jrm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hoq84"]
+top_radius = 1.0
+bottom_radius = 1.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_qapv0"]
+lightmap_size_hint = Vector2i(14, 21)
+size = Vector3(2, 2, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6l5v"]
+size = Vector3(0.4, 0.4, 1.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_samr1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_hoq84")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.566654, -0.464121)
+mesh = SubResource("PrismMesh_qapv0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.569029, -0.464121)
+mesh = SubResource("PrismMesh_qapv0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.765, 0, 0, 0, -1.07284e-07, -1, 0, 1, -1.07284e-07, 0, -0.569029, 0.164095)
+mesh = SubResource("PrismMesh_qapv0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.765, 0, 0, 0, -1.07284e-07, -1, 0, 1, -1.07284e-07, 0, 0.567, 0.164)
+mesh = SubResource("PrismMesh_qapv0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.942432, 0.0482155, 0.330905, 0.317071, -0.443255, -0.838446, 0.106249, 0.895098, -0.433025, 0.972815, -0.812764, 0.403902)
+mesh = SubResource("BoxMesh_j6l5v")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="MeshInstance3D6"]
+transform = Transform3D(0.685901, -0.139044, 0.0125295, 0.0321392, 0.226936, 0.576374, -0.136041, -0.647431, 0.199339, 0.0242265, 0.445108, 0.710342)
+mesh = SubResource("BoxMesh_j6l5v")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D6/MeshInstance3D7"]
+transform = Transform3D(0.965, -2.98023e-08, -1.97906e-08, 4.47035e-08, 1.32714, -0.177347, -7.45058e-08, 1.08625, 0.216675, -0.0313948, 0.190646, 0.916616)
+mesh = SubResource("PrismMesh_samr1")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.942466, -0.0482632, -0.330801, -0.317047, -0.442846, -0.838671, -0.106017, 0.895298, -0.432669, -0.973, -0.813, 0.404)
+mesh = SubResource("BoxMesh_j6l5v")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="MeshInstance3D8"]
+transform = Transform3D(0.685808, 0.139463, -0.0128727, -0.0319172, 0.227008, 0.576362, 0.136563, -0.647316, 0.199352, -0.0239257, 0.444363, 0.710412)
+mesh = SubResource("BoxMesh_j6l5v")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D8/MeshInstance3D9"]
+transform = Transform3D(0.965, -2.98023e-08, -1.97906e-08, 4.47035e-08, 1.32714, -0.177347, -7.45058e-08, 1.08625, 0.216675, -0.0313948, 0.190646, 0.916616)
+mesh = SubResource("PrismMesh_samr1")

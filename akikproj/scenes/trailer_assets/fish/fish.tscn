@@ -1,0 +1,18 @@
+[gd_scene load_steps=7 format=3 uid="uid://cahntdhxlargf"]
+
+[ext_resource type="Script" path="res://scripts/Fish.cs" id="1_1vkao"]
+[ext_resource type="PackedScene" uid="uid://ouk16qpxrk42" path="res://scenes/trailer_assets/fish/fish_head.tscn" id="1_101ot"]
+[ext_resource type="PackedScene" uid="uid://c66gcgk0lyp1f" path="res://scenes/trailer_assets/fish/fish_body.tscn" id="2_3shsl"]
+[ext_resource type="PackedScene" uid="uid://b50i6wbw0m3j4" path="res://scenes/trailer_assets/fish/fish_body2.tscn" id="3_modv4"]
+[ext_resource type="PackedScene" uid="uid://cahng7500c4wi" path="res://scenes/trailer_assets/fish/fish_tail.tscn" id="4_s7dk2"]
+[ext_resource type="PackedScene" uid="uid://evxd4e1tswso" path="res://scenes/trailer_assets/fish/fish_tail2.tscn" id="5_p1dhb"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_1vkao")
+
+[node name="AKIK_Procedural_Rig" type="AKIK_Procedural_Rig" parent="."]
+segment_spacing = 1.1
+angle_constraint_(degrees) = 35.0
+segments = Array[PackedScene]([ExtResource("1_101ot"), ExtResource("2_3shsl"), ExtResource("3_modv4"), ExtResource("4_s7dk2"), ExtResource("5_p1dhb")])
+"damping enabled" = true
+"damping speed" = 10.0
