@@ -1,0 +1,1129 @@
+[gd_scene load_steps=20 format=3 uid="uid://bf12gacxbtden"]
+
+[ext_resource type="PackedScene" uid="uid://cahntdhxlargf" path="res://scenes/trailer_assets/fish/fish.tscn" id="1_x7eie"]
+[ext_resource type="Script" path="res://scripts/Spider.cs" id="2_8muvn"]
+[ext_resource type="PackedScene" uid="uid://cpyirqdf7gc6l" path="res://scenes/segment.tscn" id="3_hbp7k"]
+[ext_resource type="PackedScene" uid="uid://dxeohutys1lpj" path="res://scenes/trailer_assets/caterpillar.tscn" id="4_rl7ur"]
+[ext_resource type="Script" path="res://scripts/Caterpillar.cs" id="5_3ch1y"]
+[ext_resource type="PackedScene" uid="uid://cehaybmv3bhnm" path="res://scenes/trailer_assets/dragon/dragon_player.tscn" id="6_e7vf1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ciiv5"]
+sky_top_color = Color(0.325886, 0.459976, 0.607993, 1)
+sky_horizon_color = Color(0.674916, 0.684013, 0.69838, 1)
+sky_curve = 0.102453
+ground_bottom_color = Color(0.332572, 0.44635, 0.570591, 1)
+ground_horizon_color = Color(0.620336, 0.682534, 0.716008, 1)
+ground_curve = 0.0414106
+
+[sub_resource type="Sky" id="Sky_dowfv"]
+sky_material = SubResource("ProceduralSkyMaterial_ciiv5")
+
+[sub_resource type="Environment" id="Environment_ynwf4"]
+background_mode = 2
+sky = SubResource("Sky_dowfv")
+ambient_light_color = Color(0.501407, 0.501406, 0.501406, 1)
+ambient_light_sky_contribution = 0.75
+tonemap_mode = 3
+tonemap_white = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w3cf4"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t455g"]
+albedo_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_eht6l"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hwtfg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aoxj8"]
+albedo_color = Color(0.332881, 0.332881, 0.332881, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lghw6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vh10"]
+albedo_color = Color(0.215492, 2.45166e-07, 4.81308e-08, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7l5b"]
+size = Vector3(1, 3.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_peydf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_waavd"]
+radius = 0.25
+height = 0.5
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ynwf4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.639774, 0.768563, 0, -0.768563, 0.639774, 0, 4.77569, 9.91624)
+light_energy = 2.0
+shadow_enabled = true
+shadow_blur = 1.5
+
+[node name="Floors" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Floors"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Label3D" type="Label3D" parent="Floors/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+billboard = 1
+text = "Fish (Distance Constraints)"
+font_size = 280
+
+[node name="Floor2" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor2"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor2"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Floor3" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Sphere" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92727, -1.68296, 6.01677)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere2" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.510569, -1.68296, 6.21265)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere3" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66598, -1.04078, 4.59776)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere4" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23181, -1.04078, 1.63784)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere5" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17963, -1.05255, -0.878906)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere6" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44333, -1.64304, -2.65868)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere7" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(0.714839, 0, -0.699289, 0, 1, 0, 0.699289, 0, 0.714839, -7.22496, -1.16932, -4.26038)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere8" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(0.714839, 0, -0.699289, 0, 1, 0, 0.699289, 0, 0.714839, -6.93201, -1.18109, -7.49452)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere9" type="StaticBody3D" parent="Floors/Floor3"]
+transform = Transform3D(0.714839, 0, -0.699289, 0, 1, 0, 0.699289, 0, 0.714839, -3.35441, -1.77158, -6.4845)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor3/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor3/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Label3D" type="Label3D" parent="Floors/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+billboard = 1
+text = "Quadruped (Inverse Kinematics)"
+font_size = 280
+
+[node name="Floor4" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor4"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor4"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Floor5" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 21)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor5"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor5"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Label3D" type="Label3D" parent="Floors/Floor5"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0.01, 0)
+text = "AKIK 
+Procedural Animation
+Tech Demo"
+font_size = 350
+
+[node name="Label3D2" type="Label3D" parent="Floors/Floor5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.5417, 0)
+billboard = 1
+text = "Player Controls:
+Move -  'W' 'A' 'S' 'D'
+Rotate Camera - 'Mouse'"
+font_size = 405
+outline_size = 127
+
+[node name="Floor6" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor6"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor6"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Floor7" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Sphere" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92727, -1.68296, 6.01677)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere2" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95623, -1.62693, -5.65669)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere3" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75155, -1.62693, -7.2536)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere4" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63331, -1.62693, -3.59332)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere5" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(0.957647, 0, -0.287946, 0, 1, 0, 0.287946, 0, 0.957647, -5.19819, -2.03388, -5.45016)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere6" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(0.957647, 0, -0.287946, 0, 1, 0, 0.287946, 0, 0.957647, -7.21709, -2.25805, -5.64721)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere7" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.07261, -1.68296, 5.09488)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere8" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.27914, -1.68296, 3.40227)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere9" type="StaticBody3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34204, -2.0458, 4.32748)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor7/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor7/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Label3D" type="Label3D" parent="Floors/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+billboard = 1
+text = "Caterpillar 
+(Inverse Kinematics + Distance Constraints)"
+font_size = 190
+
+[node name="Floor8" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 21)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor8"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor8"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Floor9" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9"]
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t455g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Sphere" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96326, -1.7, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere2" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96326, -1.2, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere2"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere3" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037, -1.15, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere3"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere4" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03674, -1.2, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere5" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03674, -1.7, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere6" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96326, -1.7, 3.84147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere7" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96326, -1.2, 3.84147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere7"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere8" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037, -1.15, 3.84147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere8"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere9" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03674, -1.2, 3.84147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere9"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Sphere10" type="StaticBody3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03674, -1.7, 3.84147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor9/Sphere10"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("SphereMesh_hwtfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_aoxj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor9/Sphere10"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lghw6")
+
+[node name="Label3D" type="Label3D" parent="Floors/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+billboard = 1
+text = "Quadrupeds (Inverse Kinematics)"
+font_size = 280
+
+[node name="Floor10" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(3.1, 0, 0, 0, 3.1, 0, 0, 0, 3.1, 21, 0, 21)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0)
+mesh = SubResource("PlaneMesh_w3cf4")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vh10")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor10"]
+shape = SubResource("WorldBoundaryShape3D_eht6l")
+
+[node name="Player" parent="." instance=ExtResource("6_e7vf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 22.2407, -13.828)
+
+[node name="Node3D" parent="." instance=ExtResource("1_x7eie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+speed = 0.5
+amplitude = 8.0
+
+[node name="Node3D2" parent="." instance=ExtResource("1_x7eie")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+speed = 0.5
+amplitude = 8.0
+
+[node name="Node3D3" parent="." instance=ExtResource("1_x7eie")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
+speed = 0.5
+amplitude = 8.0
+
+[node name="Node3D4" parent="." instance=ExtResource("1_x7eie")]
+transform = Transform3D(-0.219846, 0, 0.975534, 0, 1, 0, -0.975534, 0, -0.219846, 0, 1, 0)
+speed = 0.5
+amplitude = 8.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.9635, 2, 36.9206)
+script = ExtResource("2_8muvn")
+speed = 0.75
+distance = 8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_r7l5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_peydf")
+
+[node name="AKIK_chain_FR" type="AKIK_chain" parent="CharacterBody3D"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_FR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999931, 0, 4.20922e-07, 0, 1, 0, -4.20922e-07, 0, 0.999931, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.993869, 0, 2.29194e-07, 0, 1, 0, -2.29194e-07, 0, 0.993869, 0.896122, -0.759509, -0.346573)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.993869, 0, 2.29194e-07, 0, 1, 0, -2.29194e-07, 0, 0.993869, 0.502003, -1.12726, 0.495716)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D/AKIK_chain_FR"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_FL" type="AKIK_chain" parent="CharacterBody3D"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_FL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999941, 0, 1.67622e-07, 0, 1, 0, -1.67622e-07, 0, 0.999941, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.993876, 0, 4.17844e-07, 0, 1, 0, -4.17844e-07, 0, 0.993876, 0.796906, -0.256914, -0.893845)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_FL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.993876, 0, 4.17844e-07, 0, 1, 0, -4.17844e-07, 0, 0.993876, 0.500473, -1.12725, -0.500629)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_FL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D/AKIK_chain_FL"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BR" type="AKIK_chain" parent="CharacterBody3D"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_BR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999924, -5.54946e-17, 4.80486e-07, 0, 1, 1.49012e-08, -4.80486e-07, -1.49e-08, 0.999924, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.999862, -5.54801e-17, 4.80426e-07, 0, 1, 1.49012e-08, -4.80426e-07, -1.48991e-08, 0.999862, 0.158176, -1.18781, -0.253151)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999862, -5.54801e-17, 4.80426e-07, 0, 1, 1.49012e-08, -4.80426e-07, -1.48991e-08, 0.999862, -0.493885, -1.05329, 0.493004)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D/AKIK_chain_BR"]
+length = 2.37529e-05
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BL" type="AKIK_chain" parent="CharacterBody3D"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D/AKIK_chain_BL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999929, 4.44072e-16, 4.95392e-07, 0, 1, 1.49012e-08, -4.95392e-07, -1.49001e-08, 0.999929, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.999871, 4.4406e-16, 4.95335e-07, 0, 1, 1.49012e-08, -4.95335e-07, -1.48993e-08, 0.999871, 0.297581, -0.677198, -0.976147)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D/AKIK_chain_BL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999871, 4.4406e-16, 4.95335e-07, 0, 1, 1.49012e-08, -4.95335e-07, -1.48993e-08, 0.999871, -0.498814, -1.05099, -0.50071)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/AKIK_chain_BL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D/AKIK_chain_BL"]
+length = 2.21361e-05
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 42)
+script = ExtResource("5_3ch1y")
+speed = 0.5
+amplitude = 8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2"]
+shape = SubResource("BoxShape3D_r7l5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2"]
+mesh = SubResource("BoxMesh_peydf")
+
+[node name="AKIK_chain_FR" type="AKIK_chain" parent="CharacterBody3D2"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_FR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320702, -1.14126, -0.307709)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.500296, -1.70092, 0.501335)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D2/AKIK_chain_FR"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_FL" type="AKIK_chain" parent="CharacterBody3D2"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_FL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.224714, -0.817396, -0.883965)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_FL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499692, -1.69901, -0.500431)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_FL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D2/AKIK_chain_FL"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BR" type="AKIK_chain" parent="CharacterBody3D2"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_BR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.320702, -1.14126, -0.307709)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.500296, -1.70092, 0.501335)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D2/AKIK_chain_BR"]
+length = 2.37529e-05
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BL" type="AKIK_chain" parent="CharacterBody3D2"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D2/AKIK_chain_BL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.224712, -0.817389, -0.883965)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D2/AKIK_chain_BL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.499692, -1.69901, -0.500431)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/AKIK_chain_BL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D2/AKIK_chain_BL"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="CharacterBody3D3" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.9635, 2, 45.7299)
+script = ExtResource("2_8muvn")
+direction = -1.0
+speed = 0.75
+distance = 8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D3"]
+shape = SubResource("BoxShape3D_r7l5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3"]
+mesh = SubResource("BoxMesh_peydf")
+
+[node name="AKIK_chain_FR" type="AKIK_chain" parent="CharacterBody3D3"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D3/AKIK_chain_FR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999931, 0, 4.20922e-07, 0, 1, 0, -4.20922e-07, 0, 0.999931, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_FR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.985895, 0, 2.269e-07, 0, 1, 0, -2.269e-07, 0, 0.985895, 0.94223, -0.724194, -0.296219)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_FR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.985895, 0, 2.269e-07, 0, 1, 0, -2.269e-07, 0, 0.985895, 0.501751, -1.14498, 0.496845)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D3/AKIK_chain_FR"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_FL" type="AKIK_chain" parent="CharacterBody3D3"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D3/AKIK_chain_FL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999941, 0, 1.67622e-07, 0, 1, 0, -1.67622e-07, 0, 0.999941, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_FL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.985902, 0, 4.13798e-07, 0, 1, 0, -4.13798e-07, 0, 0.985902, 0.875961, -0.271907, -0.811653)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_FL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_FL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.985902, 0, 4.13798e-07, 0, 1, 0, -4.13798e-07, 0, 0.985902, 0.50053, -1.14492, -0.500439)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_FL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D3/AKIK_chain_FL"]
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BR" type="AKIK_chain" parent="CharacterBody3D3"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D3/AKIK_chain_BR/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999924, -5.54946e-17, 4.80486e-07, 0, 1, 1.49012e-08, -4.80486e-07, -1.49e-08, 0.999924, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BR/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_BR/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BR"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.991888, -5.36209e-17, 4.74448e-07, 0, 1, 1.49012e-08, -4.74448e-07, -1.47803e-08, 0.991888, 0.231346, -1.19103, -0.167107)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BR/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_BR/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BR"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.991888, -5.36209e-17, 4.74448e-07, 0, 1, 1.49012e-08, -4.74448e-07, -1.47803e-08, 0.991888, -0.498821, -1.03845, 0.498924)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BR/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D3/AKIK_chain_BR"]
+length = 2.37529e-05
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="AKIK_chain_BL" type="AKIK_chain" parent="CharacterBody3D3"]
+start_path = NodePath("AKIK_joint")
+end_path = NodePath("AKIK_joint3")
+is_following = true
+targeter = NodePath("/root/@EditorNode@16914/@Panel@13/@VBoxContainer@14/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@25/DockVSplitCenter/@VSplitContainer@52/@VBoxContainer@53/@PanelContainer@98/MainScreen/@CanvasItemEditor@9272/@VSplitContainer@9094/@HSplitContainer@9096/@HSplitContainer@9098/@Control@9099/@SubViewportContainer@9100/@SubViewport@9101/Main/CharacterBody3D3/AKIK_chain_BL/AKIK_ground_targeter")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="AKIK_joint" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.999929, 4.44072e-16, 4.95392e-07, 0, 1, 1.49012e-08, -4.95392e-07, -1.49001e-08, 0.999929, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BL/AKIK_joint"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_BL/AKIK_joint" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint2")
+
+[node name="AKIK_joint2" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BL"]
+next_path = NodePath("../AKIK_joint3")
+prev_path = NodePath("../AKIK_joint")
+transform = Transform3D(0.991897, 4.42378e-16, 4.87481e-07, 0, 1, 1.49012e-08, -4.87481e-07, -1.47804e-08, 0.991897, 0.343113, -0.714225, -0.933903)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BL/AKIK_joint2"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="Segment" parent="CharacterBody3D3/AKIK_chain_BL/AKIK_joint2" node_paths=PackedStringArray("target_node") instance=ExtResource("3_hbp7k")]
+target_node = NodePath("../../AKIK_joint3")
+
+[node name="AKIK_joint3" type="AKIK_joint" parent="CharacterBody3D3/AKIK_chain_BL"]
+prev_path = NodePath("../AKIK_joint2")
+transform = Transform3D(0.991897, 4.42378e-16, 4.87481e-07, 0, 1, 1.49012e-08, -4.87481e-07, -1.47804e-08, 0.991897, -0.498421, -1.03712, -0.500816)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D3/AKIK_chain_BL/AKIK_joint3"]
+layers = 65537
+mesh = SubResource("SphereMesh_waavd")
+
+[node name="AKIK_ground_targeter" type="AKIK_ground_targeter" parent="CharacterBody3D3/AKIK_chain_BL"]
+length = 2.21361e-05
+jump_margin = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+target_position = Vector3(0, -2, 0)
+
+[node name="Caterpillar" parent="." instance=ExtResource("4_rl7ur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.4, 0)
+script = ExtResource("5_3ch1y")
+speed = 0.75
+amplitude = 8.0
